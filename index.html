@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<!--
+=====================================================================
+  AURIG ENERGY — SITE (v3)
+  Arquivo único, pronto para GitHub Pages.
+  O arquivo precisa se chamar "index.html" e ficar na raiz do repositório.
+
+  ONDE EDITAR: procure por "const CONFIG = {" no fim do arquivo.
+    • whatsapp ........ número com 55 + DDD (só dígitos)
+    • webhookUrl ...... URL do webhook do Make que recebe o formulário + PDF
+    • calendlyUrl ..... link do Calendly (vazio = botão some)
+    • email / cnpj .... aparecem no rodapé e no aviso de privacidade (vazio = somem)
+
+  LINK PERSONALIZADO (para os e-mails do Make):
+    https://SEU-SITE/?empresa=Aco%20Master&conta=151094&dist=Neoenergia%20Pernambuco&lead=AUR-00001
+    → o site cumprimenta a empresa, já abre o simulador com a conta dela
+      e devolve o "lead" junto com o formulário para o Make achar a linha certa.
+=====================================================================
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aurig Energy — Até 25% a menos na conta de luz da sua empresa</title>
+<meta name="description" content="Sua empresa reduz até 25% na conta de luz com créditos de usinas solares parceiras. Sem investimento, sem obra e sem contrato de longo prazo. Simule em segundos.">
+<meta name="theme-color" content="#1F2B27">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aurig Energy — A mesma energia. Outra conta.">
+<meta property="og:description" content="Até 25% a menos na conta de luz da sua empresa. Sem investimento, sem obra, sem contrato de longo prazo.">
+<meta property="og:locale" content="pt_BR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -40 442 399"%3E%3Crect x="-40" y="-40" width="442" height="399" rx="80" fill="%231F2B27"/%3E%3Cpath fill="%23C5A363" fill-rule="evenodd" d="M266.2 5.5 L259.8 9.2 L259 10 L259 11.2 L262.8 17 L270 30.5 L271 31.5 L277 42.5 L279 45.2 L281 49.5 L282 50.5 L293.8 71 L293.8 72.2 L286.8 84 L286.2 84 L284.8 82.2 L284.8 81.5 L283.8 80.5 L281.8 76.2 L279.8 73.5 L277.8 69.2 L272.8 60.5 L271.8 59.5 L268.8 54.2 L268.8 53.5 L267.8 52.5 L261.8 41.2 L260.8 40.2 L260.8 39.5 L259.8 38.5 L255.8 31.5 L253.8 27.2 L252.8 26.2 L252.8 25.5 L251.8 24.5 L246.8 15.2 L245.8 14.2 L245.8 13.5 L244.8 12.5 L241.5 6.8 L240.2 6.5 L235.2 10 L234.5 10 L234 10.5 L234 12 L280.8 93.5 L274.8 104.8 L273.8 105.5 L272.8 104.8 L268.8 97.5 L267.8 96.5 L216.2 7 L215.2 7 L209 12 L209 12.8 L212 17.2 L219.2 30.8 L223 36.5 L223 37.2 L224 38.2 L226 42.5 L227 43.5 L227 44.2 L228 45.2 L238 63.5 L239 64.5 L239 65.2 L240 66.2 L245 75.5 L246 76.5 L246 77.2 L247 78.2 L249 82.5 L251 85.2 L251 86 L268 115 L268 116.2 L267 117.2 L261 127.8 L259.8 127.2 L240.8 93.2 L239.8 92.2 L238.5 89.5 L232.8 80.2 L223.5 63.2 L191.8 8.5 L191 7.8 L189.8 8 L185.2 11 L183.8 12.8 L255 137.2 L255 138.5 L248.2 149.8 L246.8 148.5 L246.8 147.8 L243.8 143.2 L243.8 142.5 L239.8 136.5 L237.8 132.2 L235.8 129.5 L233.8 125.2 L232.8 124.2 L232.8 123.5 L231.8 122.5 L219.8 101.2 L218.8 100.2 L218.8 99.5 L217.8 98.5 L210.8 86.2 L210.8 85.5 L209.8 84.5 L202.5 71.2 L198.8 65.5 L196.8 61.2 L194.8 58.5 L179.5 31 L176 25.5 L167.5 10 L166.5 9 L89 9.2 L89.2 18 L160 18 L162 19.5 L167.8 29.5 L167.8 30.2 L167 30.8 L78.5 30.5 L77.8 31.2 L78 39.8 L172.8 39.8 L174.8 41.8 L180.5 52.2 L179.8 53 L66.8 53 L66.2 53.5 L66.2 61.8 L67 62.5 L185.5 62.5 L186.2 62.8 L187.5 64.2 L192.8 73.2 L193 74.5 L192.5 75 L55.2 75 L54.8 75.2 L54.8 84.2 L55.2 84.8 L199.2 84.8 L206 96.2 L205.5 97.2 L43.8 97 L42.2 98.5 L37 108.5 L29 122.5 L28 123.5 L28 124.2 L27 125.2 L10 155.5 L6.2 161.2 L6 163.2 L12 168.8 L12.5 168.8 L13.8 167.2 L13.8 166.5 L14.8 165.5 L27.8 142.5 L28.8 141.5 L47.8 108 L48.8 107 L61.8 107 L62.2 107.5 L61.8 109.5 L56 119.2 L54 123.5 L53 124.5 L42 144.2 L41 145.2 L39 149.5 L38 150.5 L38 151.2 L37 152.2 L34 158.2 L31 162.8 L28 168.5 L27 169.5 L27 170.2 L26 171.2 L20 182.2 L19 183.2 L19.2 184.8 L25.2 189.8 L26.5 189.5 L27 188 L34.8 175.2 L44.8 157.2 L45.8 156.2 L45.8 155.5 L46.8 154.5 L67.8 117.2 L71.5 111.5 L72.8 108.5 L74.5 106.8 L87 106.8 L87.8 107.2 L87.8 108.2 L86 111.5 L85 112.5 L82 118.5 L81 119.5 L74 132.5 L73 133.5 L70 139.5 L69 140.5 L52 170.2 L50 174.5 L49 175.5 L49 176.2 L48 177.2 L46 181.5 L45 182.5 L45 183.2 L44 184.2 L42 188.5 L32 205.2 L38 211.5 L39 211.5 L47.8 196.2 L48.8 195.2 L63.8 168.5 L64.8 167.5 L73.8 152 L73.8 151.2 L74.8 150.2 L84.8 132.2 L86.8 129.5 L88.8 125.2 L90.8 122.5 L99 107.5 L100.5 106.8 L112.8 107 L113.2 107.5 L113 109 L110 114.5 L109 115.5 L109 116.2 L106 121.5 L105 122.5 L105 123.2 L104 124.2 L102 128.5 L101 129.5 L101 130.2 L97 137.2 L96 138.2 L86 156.5 L85 157.5 L76.8 172.5 L73 178.2 L67 189.2 L66 190.2 L64 194.5 L63 195.5 L63 196.2 L62 197.2 L57 206.5 L56 207.5 L52 215.2 L45.2 226 L45.2 226.8 L51.8 232 L52.8 232 L58.8 221.5 L59.8 220.5 L61.8 216.2 L62.8 215.2 L62.8 214.5 L66.8 208.2 L76.8 190.2 L77.8 189.2 L80.8 183.2 L81.8 182.2 L85 176 L86.5 174 L103.8 143.2 L104.8 142.2 L107.8 136.2 L108.8 135.2 L108.8 134.5 L109.8 133.5 L111.8 129.2 L115.8 122.2 L116.8 121.2 L116.8 120.5 L117.8 119.5 L123.8 108.2 L125.5 106.8 L138.2 106.8 L139 107.5 L139 108.5 L135.2 114.2 L101 174.5 L100 175.5 L97 180.8 L97 181.5 L96 182.5 L93 187.8 L93 188.5 L89 194.5 L74 221.2 L71.2 225.2 L67 233.5 L66 234.5 L66 235.2 L65 236.2 L58.2 248 L59 250.2 L60 251.2 L95.5 313.8 L98.5 313.8 L100.2 312.8 L102 312.8 L104.5 311.8 L104.8 310.2 L103.8 309.2 L103.8 308.5 L102.8 307.5 L97.8 298.2 L95.8 295.5 L93.8 291.2 L92.8 290.2 L86.8 279.2 L85.8 278.2 L85.8 277.5 L84.8 276.5 L82.8 272.2 L81.8 271.2 L77.5 263.2 L69.8 250.5 L69.2 249 L69.5 248 L76.2 236.8 L78 238.5 L84 249.5 L85 250.5 L120.2 312.5 L122.5 312.8 L124.2 311.8 L125.8 311.8 L127.5 310.8 L129 310.5 L129 309 L82 226.8 L88 215.8 L89 214.8 L90.2 215.5 L91 217.2 L92 218.2 L98 229.5 L99 230.5 L110 250.2 L111 251.2 L113 255.5 L114 256.5 L114 257.2 L115 258.2 L145.8 311.8 L147.5 311.8 L149 310.8 L150.8 310.5 L151.8 309.8 L153 309.8 L154 308.5 L153.8 307.2 L148.8 298.5 L147.8 297.5 L140.8 284.5 L135 275.2 L130.8 267.2 L129.8 266.2 L126.8 260.2 L125.8 259.2 L115.8 241.2 L114.8 240.2 L114.8 239.5 L113.8 238.5 L111.8 234.2 L110.8 233.2 L110.8 232.5 L106.8 226.5 L104.8 222.2 L103.8 221.2 L103.8 220.5 L102.8 219.5 L100.8 215.2 L99.8 214.2 L94.8 205.5 L95 203.2 L101.5 192.5 L102.8 192.8 L109 204.5 L110 205.5 L110 206.2 L111 207.2 L116 216.5 L117 217.5 L117 218.2 L118 219.2 L120 223.5 L121 224.5 L121 225.2 L122 226.2 L135 249.5 L136 250.5 L136 251.2 L137 252.2 L141.2 260.2 L144 264.2 L146 268.5 L147 269.5 L147 270.2 L158 289.5 L159 290.5 L165 301.5 L167 304.2 L170 310.5 L172 310.8 L173.5 309.8 L176.8 308.8 L179 307.2 L169.8 290.5 L168.8 289.5 L163.8 280.2 L162.8 279.2 L162.8 278.5 L161.8 277.5 L159.8 273.2 L158.8 272.2 L158.8 271.5 L157.8 270.5 L151.8 259.5 L150.8 258.5 L137.8 235.2 L136.8 234.2 L136.8 233.5 L135.8 232.5 L122.8 209.2 L121.8 208.2 L121.8 207.5 L120.8 206.5 L113.5 193.2 L107.8 184 L107.2 182.2 L114.2 170.2 L115.8 171 L128 193.2 L129 194.2 L149 229.5 L150 230.5 L150 231.2 L151 232.2 L153 236.5 L155 239.2 L157 243.5 L158 244.5 L172 269.5 L173 270.5 L173 271.2 L174 272.2 L196.5 311.2 L197.5 311.8 L272.8 311.2 L272.8 302.2 L272.2 301.8 L202 301.8 L200.8 300.5 L194.8 290 L195.2 289.2 L284.2 289.2 L284.8 288.8 L284.5 280 L189.5 280 L188 278.2 L182.2 267.2 L182.8 266.8 L295.8 266.8 L296.2 266.5 L296.5 258.8 L295.5 257.2 L176.5 257.2 L173.8 253.5 L169.5 245.8 L170.2 244.8 L307.5 244.8 L307.8 236 L307.2 235.2 L164.2 235.5 L162.8 234.5 L160.8 230.2 L156.8 224 L156.8 223 L157.2 222.5 L319.5 222.5 L321.5 220 L326.8 210.2 L328.8 207.5 L337.8 191.2 L338.8 190.2 L338.8 189.5 L339.8 188.5 L351 168.2 L356.5 159.2 L356.8 157.5 L351.2 150.8 L350.5 151 L345.2 159.5 L337 174.5 L333 180.5 L315 212.2 L313.2 213.2 L301 213.2 L300 212.5 L316.8 183.2 L317.8 182.2 L332.8 155.5 L343.8 137.2 L343.8 136.2 L337.5 129.2 L330 142.2 L329 143.2 L323 154.5 L322 155.5 L316 166.5 L315 167.5 L315 168.2 L314 169.2 L305 185.5 L304 186.5 L304 187.2 L301 192.5 L300 193.5 L289.2 212.2 L288 213.2 L275.5 213.2 L274.8 212.8 L274.8 211.5 L275.8 210.5 L277.8 206.5 L280.8 202 L285.8 193.2 L285.8 192.5 L286.8 191.5 L306.8 156.2 L307.8 155.2 L317.8 137.2 L318.8 136.2 L324.8 125.2 L325.8 124.2 L330.8 115.5 L329.8 113.5 L324.5 107.8 L323 109.5 L317 120.5 L316 121.5 L264 212.2 L262.2 213.2 L249.5 213.2 L248.8 212.5 L256.8 198.5 L257.8 197.5 L266.8 181.2 L267.8 180.2 L267.8 179.5 L268.8 178.5 L270.8 174.2 L275.8 166.5 L278.8 160.5 L284.5 151.2 L296.8 129.2 L298.8 126.5 L300.8 122.2 L301.8 121.2 L301.8 120.5 L302.8 119.5 L306.8 112.5 L308.8 108.2 L316.8 95 L316.8 92.8 L311.5 87.2 L310.8 87.2 L309 89.5 L309 90.2 L308 91.2 L306 95.5 L302 102.5 L301 103.5 L301 104.2 L297 110.5 L290 123.2 L287.2 127.2 L279 142.2 L275.2 148 L273 152.5 L272 153.5 L272 154.2 L271 155.2 L260.8 173.8 L257 179.5 L237.5 213 L224.5 213.2 L223.8 212.5 L240.8 182.2 L241.8 181.2 L241.8 180.5 L242.8 179.5 L244.8 175.2 L245.8 174.2 L256.8 154.2 L257.8 153.2 L263.8 142.2 L264.8 141.2 L304.5 72 L304.5 71.2 L301.8 67.2 L301.8 66.5 L297.8 60.2 L290.8 47.2 L289.8 46.2 L289.8 45.5 L288.8 44.5 L278.8 26.5 L277.8 25.5 L277.8 24.8ZM150.5 107 L211.2 106.8 L213 108.2 L222 124.5 L223 125.5 L229 136.5 L230 137.5 L236 148.5 L237 149.5 L242.8 159.5 L242.8 160.2 L212.2 212.8 L211.2 213.2 L151.5 213.2 L150 212.2 L142.8 199.5 L138.8 193.5 L136.8 189.2 L135.8 188.2 L119.8 160.2Z"/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  /* Paleta Aurig (manual de marca) */
+  --f950:#161F1C; --f900:#1F2B27; --f850:#26332F; --f800:#2F3E39; --f700:#3A4D46; --f600:#4A5F57;
+  --s500:#5C6B61; --s400:#7E9188; --s300:#9DB0A6; --s200:#C3D1C9;
+  --m100:#DCE6DE; --m50:#EAF1EA; --paper:#FBF9F3; --cream:#ECE7D8;
+  --g500:#C5A363; --g300:#E0C892; --g700:#7E612A;
+  --ink:#1F2B27; --ink2:#4A5F57;
+  --serif:"Cormorant Garamond", "Times New Roman", serif;
+  --sans:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --maxw:1240px; --r:22px; --r-sm:14px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-variant-numeric:lining-nums}
+[hidden]{display:none!important}
+body{margin:0;font-family:var(--sans);font-size:17px;line-height:1.6;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0 0 1em}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1;letter-spacing:-.01em;margin:0}
+em{font-style:italic}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:12px;z-index:200;background:var(--g500);color:var(--f950);padding:10px 16px;border-radius:10px;font-weight:600}
+.skip:focus{left:12px}
+:focus-visible{outline:2px solid var(--g500);outline-offset:3px;border-radius:6px}
+::selection{background:var(--g300);color:var(--f950)}
+
+/* ---------- elementos de marca ---------- */
+.mark{width:1em;height:auto;aspect-ratio:362/319;fill:currentColor;flex:0 0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:12.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--g700);margin:0 0 22px}
+.eyebrow::before{content:"";width:26px;height:1.5px;background:currentColor}
+.dark .eyebrow{color:var(--g500)}
+.grain{position:relative;isolation:isolate}
+.grain::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.dark{background:var(--f900);color:var(--m50)}
+
+/* ---------- botões ---------- */
+.btn{--bg:var(--g500);--fg:var(--f950);display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;border:1.5px solid transparent;background:var(--bg);color:var(--fg);font:600 16px/1 var(--sans);text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .25s var(--ease),background .25s,color .25s,border-color .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(197,163,99,.7)}
+.btn .arr{transition:transform .25s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.btn-gold:hover{--bg:var(--g300)}
+.btn-line{--bg:transparent;--fg:var(--m50);border-color:rgba(234,241,234,.32)}
+.btn-line:hover{--bg:var(--m50);--fg:var(--f900);box-shadow:none}
+.btn-ink{--bg:var(--f900);--fg:var(--m50)}
+.btn-ink:hover{--bg:var(--f700);box-shadow:0 14px 30px -14px rgba(31,43,39,.6)}
+.btn svg.ic{width:18px;height:18px}
+
+/* ---------- barra de progresso ---------- */
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:120;background:var(--g500);transform-origin:0 50%;transform:scaleX(var(--sp,0))}
+@supports (animation-timeline: scroll()){
+  .progress{animation:grow linear both;animation-timeline:scroll(root)}
+  @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+}
+
+/* ---------- cabeçalho ---------- */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:100;color:var(--m50);transition:background .35s,box-shadow .35s,backdrop-filter .35s}
+.hdr.solid{background:rgba(22,31,28,.82);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(234,241,234,.08)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:78px;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--m50)}
+.brand .mark{width:38px}
+.brand b{display:block;font:600 21px/1 var(--serif);font-variant-numeric:lining-nums;letter-spacing:.06em}
+.brand small{display:block;font-size:8.5px;letter-spacing:.32em;color:var(--s300);margin-top:4px;font-weight:500}
+.nav{display:flex;gap:30px}
+.nav a{text-decoration:none;font-size:15px;font-weight:500;color:var(--s200);position:relative;padding:6px 0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--g500);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.nav a:hover{color:var(--m50)}
+.nav a:hover::after{transform:scaleX(1)}
+.hdr .cta{display:flex;gap:10px;align-items:center}
+.hdr .btn{min-height:44px;padding:0 20px;font-size:15px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid rgba(234,241,234,.2);background:transparent;color:var(--m50);cursor:pointer}
+.burger span{display:block;width:18px;height:1.5px;background:currentColor;margin:4px auto;transition:transform .3s}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;padding:118px 0 56px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;
+  background:radial-gradient(900px 620px at 64% 34%, rgba(197,163,99,.14), transparent 62%),radial-gradient(900px 600px at 0% 100%, rgba(58,77,70,.7), transparent 60%),var(--f900)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:36px;align-items:center}
+.hero h1{font-size:clamp(52px,7.4vw,112px);line-height:.92;font-weight:500;letter-spacing:-.015em;margin-bottom:28px}
+.hero h1 em{color:var(--g500);font-weight:500}
+.hero h1 .ln{display:block}
+.js .hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.js .hero h1 .w>span{display:inline-block;transform:translateY(105%);transition:transform 1s var(--ease)}
+.js .hero.go h1 .w>span{transform:none}
+.lede{font-size:clamp(17px,1.45vw,20px);color:var(--s200);max-width:540px;margin-bottom:34px}
+.lede b{color:var(--m50);font-weight:600}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
+.ticks{display:flex;flex-wrap:wrap;gap:10px 22px;list-style:none;padding:0;margin:0;font-size:14px;color:var(--s300)}
+.ticks li{display:flex;align-items:center;gap:8px}
+.ticks li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--g500);box-shadow:0 0 0 4px rgba(197,163,99,.18)}
+.persona{display:inline-flex;align-items:center;gap:10px;margin:0 0 26px;padding:8px 16px 8px 8px;border-radius:999px;background:rgba(234,241,234,.07);border:1px solid rgba(234,241,234,.14);color:var(--m50);font-size:14.5px;text-decoration:none;transition:background .25s}
+.persona:hover{background:rgba(234,241,234,.12)}
+.persona .dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--g500);color:var(--f950)}
+.persona .dot .mark{width:16px}
+.persona[hidden]{display:none}
+
+.scene-wrap{position:relative}
+.scene{width:100%;height:auto;overflow:visible}
+@media (min-width:1061px){.scene-wrap{margin-right:-34px;margin-left:-10px}}
+.scene .bob{animation:bob 7s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-7px)}}
+.scene .shadow{animation:shad 7s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes shad{50%{transform:scale(.94);opacity:.75}}
+.scene .flow{stroke-dasharray:3 13;animation:flow 1.1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-16}}
+.scene .glint{opacity:0;animation:glint 4.8s ease-in-out infinite;animation-delay:calc(var(--i) * .16s)}
+@keyframes glint{0%,62%,100%{opacity:0}72%{opacity:.85}}
+.scene .lit{animation:lit 5s ease-in-out infinite;animation-delay:calc(var(--i) * -.7s)}
+@keyframes lit{0%,100%{opacity:.95}50%{opacity:.55}}
+.scene .ring{transform-box:fill-box;transform-origin:center;animation:ring 4s ease-out infinite}
+.scene .ring.r2{animation-delay:2s}
+@keyframes ring{from{transform:scale(.6);opacity:.55}to{transform:scale(1.6);opacity:0}}
+.scene .lbl{font:600 13.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;fill:var(--s200)}
+.scene .lbl-n{font:600 12px var(--sans);fill:var(--f950)}
+.billcard{position:absolute;right:0;top:4%;width:min(250px,46%);padding:16px 18px;border-radius:18px;background:rgba(22,31,28,.72);border:1px solid rgba(234,241,234,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 30px 60px -30px rgba(0,0,0,.6);animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.billcard .k{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--s300);display:flex;justify-content:space-between}
+.billcard .k b{color:var(--g500);letter-spacing:.04em}
+.billcard .old{font-size:15px;color:var(--s400);text-decoration:line-through;text-decoration-color:var(--g500);margin-top:8px}
+.billcard .new{font:600 30px/1.05 var(--serif);font-variant-numeric:lining-nums;color:var(--m50)}
+.billcard .bar{height:6px;border-radius:6px;background:rgba(234,241,234,.12);margin-top:12px;overflow:hidden;display:flex;justify-content:flex-end}
+.billcard .bar i{display:block;height:100%;width:var(--cut,25%);background:var(--g500);border-radius:6px;transition:width 1.2s var(--ease)}
+
+.scroll-hint{display:flex;align-items:center;gap:10px;margin-top:46px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--s400)}
+.scroll-hint i{width:1px;height:38px;background:linear-gradient(var(--g500),transparent);animation:hint 2.2s ease-in-out infinite;transform-origin:top}
+@keyframes hint{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ---------- faixa de segmentos ---------- */
+.marquee{background:var(--g500);color:var(--f950);overflow:hidden;border-block:1px solid rgba(0,0,0,.06)}
+.marquee .track{display:flex;width:max-content;animation:mq 46s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.marquee ul{display:flex;align-items:center;gap:34px;list-style:none;margin:0;padding:20px 17px;font:500 26px/1 var(--serif);font-variant-numeric:lining-nums;white-space:nowrap}
+.marquee li{display:flex;align-items:center;gap:34px}
+.marquee li .mark{width:18px;opacity:.55}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- seções ---------- */
+.sec{padding:clamp(80px,11vw,150px) 0}
+.sec-head{max-width:760px;margin-bottom:clamp(40px,6vw,72px)}
+.sec-head h2{font-size:clamp(40px,5.2vw,74px);margin-bottom:20px}
+.sec-head h2 em{color:var(--g700)}
+.dark .sec-head h2 em{color:var(--g500)}
+.sec-head p{font-size:19px;color:var(--ink2);max-width:600px}
+.dark .sec-head p{color:var(--s300)}
+
+/* reveal */
+.js [data-r]{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.js [data-r].in{opacity:1;transform:none}
+
+/* ---------- simulador ---------- */
+.sim{background:var(--paper)}
+.sim-grid>*,.hero-grid>*,.how-grid>*,.faq-grid>*,.c-grid>*{min-width:0}
+.sim-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:start}
+.sim-panel{background:#fff;border:1px solid var(--m100);border-radius:28px;padding:clamp(24px,3.4vw,40px);box-shadow:0 40px 80px -60px rgba(31,43,39,.45)}
+.sim-label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:14px;font-weight:600;color:var(--ink2);margin-bottom:6px}
+.sim-label span{font-weight:500;color:var(--s400);font-size:13px}
+.amount{display:flex;align-items:baseline;gap:8px;border-bottom:1.5px solid var(--m100);padding-bottom:8px;margin-bottom:22px;transition:border-color .2s}
+.amount:focus-within{border-color:var(--g500)}
+.amount .cur{font:500 clamp(28px,3.4vw,40px)/1 var(--serif);font-variant-numeric:lining-nums;color:var(--s400)}
+.amount input{flex:1;min-width:0;width:100%;border:0;outline:0;background:transparent;font:600 clamp(48px,6vw,78px)/1.05 var(--serif);font-variant-numeric:lining-nums;color:var(--ink);font-variant-numeric:tabular-nums;padding:0}
+.range{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;cursor:pointer;margin:0 0 6px;--fill:30%}
+.range::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:linear-gradient(90deg,var(--g500) var(--fill),var(--m100) var(--fill))}
+.range::-moz-range-track{height:6px;border-radius:6px;background:var(--m100)}
+.range::-moz-range-progress{height:6px;border-radius:6px;background:var(--g500)}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--f900);border:4px solid var(--g500);margin-top:-11px;box-shadow:0 6px 16px -4px rgba(31,43,39,.5);transition:transform .2s}
+.range::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--f900);border:4px solid var(--g500)}
+.range:active::-webkit-slider-thumb{transform:scale(1.15)}
+.scale{display:flex;justify-content:space-between;font-size:12.5px;color:var(--s400);margin-bottom:26px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}
+.chip{border:1.5px solid var(--m100);background:transparent;border-radius:999px;padding:9px 16px;font:600 14px var(--sans);color:var(--ink2);cursor:pointer;transition:all .2s}
+.chip small{font-weight:500;color:var(--s400);margin-left:4px}
+.chip[aria-pressed="true"]{background:var(--f900);border-color:var(--f900);color:var(--m50)}
+.chip[aria-pressed="true"] small{color:var(--g300)}
+.res{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.res .hl{grid-column:span 2;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.res div{background:var(--paper);border:1px solid var(--m100);border-radius:var(--r-sm);padding:16px}
+.res small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--s400);margin-bottom:4px}
+.res b{display:block;font:600 clamp(26px,2.6vw,34px)/1.1 var(--serif);font-variant-numeric:lining-nums tabular-nums;color:var(--ink);white-space:nowrap}
+.res .hl{background:var(--f900);border-color:var(--f900)}
+.res .hl small{color:var(--s300)}
+.res .hl b{color:var(--g300);font-size:clamp(36px,4vw,52px)}
+.equiv{margin:20px 0 0;font-size:16px;color:var(--ink2)}
+.equiv b{color:var(--ink)}
+.sim-note{font-size:13px;color:var(--s400);margin:18px 0 0}
+
+/* recibo */
+.receipt-wrap{position:sticky;top:110px}
+.receipt{position:relative;background:#fff;border-radius:22px 22px 0 0;padding:30px 30px 40px;box-shadow:0 50px 90px -50px rgba(31,43,39,.55);font-variant-numeric:tabular-nums;
+  -webkit-mask:radial-gradient(10px at 50% 100%,#0000 98%,#000) 50% 100%/20px 100% repeat-x;mask:radial-gradient(10px at 50% 100%,#0000 98%,#000) 50% 100%/20px 100% repeat-x;transform:rotate(1.2deg);transition:transform .6s var(--ease)}
+.receipt:hover{transform:rotate(0)}
+.rc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding-bottom:18px;border-bottom:1.5px dashed var(--m100);margin-bottom:18px}
+.rc-top .t{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--s400)}
+.rc-top .d{font:600 22px/1.15 var(--serif);font-variant-numeric:lining-nums;color:var(--ink);margin-top:4px}
+.rc-top .mark{width:34px;color:var(--f700)}
+.rc-row{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:9px 0;font-size:15.5px;color:var(--ink2)}
+.rc-row b{font-weight:600;color:var(--ink);font-size:17px;white-space:nowrap}
+.rc-row small{display:block;font-size:12.5px;color:var(--s400)}
+.rc-row.strike b{text-decoration:line-through;text-decoration-color:var(--g500);text-decoration-thickness:2px;color:var(--s400)}
+.rc-row.save{color:var(--g700)}
+.rc-row.save b{color:var(--g700)}
+.rc-total{display:flex;justify-content:space-between;align-items:baseline;border-top:1.5px dashed var(--m100);margin-top:10px;padding-top:16px}
+.rc-total span{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--s400)}
+.rc-total b{font:600 clamp(32px,3.6vw,48px)/1 var(--serif);font-variant-numeric:lining-nums;color:var(--ink);white-space:nowrap}
+.rc-total{gap:14px;flex-wrap:wrap}
+.rc-bar{display:flex;height:12px;border-radius:12px;overflow:hidden;margin:22px 0 8px;background:var(--m100)}
+.rc-bar .keep{background:var(--f800);transition:flex-basis .8s var(--ease)}
+.rc-bar .cut{background:repeating-linear-gradient(-45deg,var(--g500) 0 6px,var(--g300) 6px 12px);transition:flex-basis .8s var(--ease)}
+.rc-leg{display:flex;justify-content:space-between;font-size:12.5px;color:var(--s400)}
+.receipt-wrap{z-index:1}
+.stamp{position:absolute;right:-22px;top:-40px;z-index:2;width:116px;height:116px;border-radius:50%;border:2px solid var(--g500);color:var(--g700);display:grid;place-items:center;text-align:center;transform:rotate(-12deg);background:rgba(251,249,243,.92);box-shadow:0 10px 24px -14px rgba(31,43,39,.5)}
+.stamp::before{content:"";position:absolute;inset:6px;border-radius:50%;border:1px dashed rgba(197,163,99,.7)}
+.stamp b{display:block;font:600 34px/1 var(--serif);font-variant-numeric:lining-nums}
+.stamp small{display:block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+.stamp.pop{animation:pop .5s var(--ease)}
+@keyframes pop{0%{transform:rotate(-12deg) scale(1.25);opacity:.4}100%{transform:rotate(-12deg) scale(1)}}
+.sim-cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.sim-cta p{margin:0;font-size:14px;color:var(--s400)}
+
+/* ---------- como funciona ---------- */
+.how{background:var(--m50)}
+.how-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,90px)}
+.how-sticky{position:sticky;top:120px;align-self:start}
+.how-sticky .sec-head{margin-bottom:28px}
+.steps{position:relative;list-style:none;margin:0;padding:0 0 0 54px}
+.steps::before,.steps::after{content:"";position:absolute;left:17px;top:12px;bottom:12px;width:2px;border-radius:2px;background:var(--m100)}
+.steps::after{background:var(--g500);transform-origin:top;transform:scaleY(var(--p,0));transition:transform .15s linear}
+.step{position:relative;padding:4px 0 clamp(44px,6vw,72px)}
+.step:last-child{padding-bottom:0}
+.step .n{position:absolute;left:-54px;top:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--paper);border:2px solid var(--m100);font:600 14px var(--sans);color:var(--s400);transition:all .4s var(--ease)}
+.step.on .n{background:var(--f900);border-color:var(--g500);color:var(--g300);box-shadow:0 0 0 6px rgba(197,163,99,.16)}
+.step h3{font-size:clamp(28px,3vw,38px);margin:2px 0 12px;transition:color .4s}
+.step p{color:var(--ink2);max-width:520px;margin:0}
+.step .tag{display:inline-block;margin-top:14px;font-size:12.5px;font-weight:600;letter-spacing:.06em;color:var(--g700);background:rgba(197,163,99,.14);padding:6px 12px;border-radius:999px}
+
+/* ---------- bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(200px,auto);gap:16px}
+.tile{position:relative;overflow:hidden;border-radius:var(--r);padding:28px;background:var(--f850);border:1px solid rgba(234,241,234,.08);display:flex;flex-direction:column;justify-content:flex-end;transition:border-color .3s,transform .4s var(--ease)}
+.tile:hover{border-color:rgba(197,163,99,.45);transform:translateY(-3px)}
+.tile h3{font-size:clamp(26px,2.4vw,34px);margin-bottom:10px;color:var(--m50)}
+.tile p{color:var(--s300);margin:0;font-size:15.5px;max-width:440px}
+.t-big{grid-column:span 3;grid-row:span 2;background:radial-gradient(500px 360px at 85% 0%,rgba(197,163,99,.28),transparent 65%),var(--f800)}
+.t-big .num{font:500 clamp(110px,15vw,210px)/.85 var(--serif);font-variant-numeric:lining-nums;color:var(--g500);letter-spacing:-.03em;margin-bottom:auto}
+.t-big .num small{font-size:.42em}
+.t-3{grid-column:span 3}
+.t-2{grid-column:span 2}
+.t-4{grid-column:span 4}
+.tile .ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(197,163,99,.12);color:var(--g500);margin-bottom:auto}
+.tile .ico svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tile .wm{position:absolute;right:-60px;top:-60px;width:260px;color:rgba(234,241,234,.05);transition:transform 1.2s var(--ease)}
+.tile:hover .wm{transform:rotate(60deg)}
+.also{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.also span{font-size:13.5px;padding:7px 13px;border-radius:999px;border:1px solid rgba(234,241,234,.16);color:var(--s200)}
+
+/* ---------- para quem ---------- */
+.who{background:var(--paper)}
+.segs{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--m100);border-left:1px solid var(--m100)}
+.seg{padding:30px 26px 34px;border-right:1px solid var(--m100);border-bottom:1px solid var(--m100);position:relative;overflow:hidden;transition:background .35s,color .35s}
+.seg::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--g500);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.seg:hover{background:#fff}
+.seg:hover::after{transform:scaleX(1)}
+.seg svg{width:34px;height:34px;fill:none;stroke:var(--f700);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:22px;transition:stroke .3s,transform .4s var(--ease)}
+.seg:hover svg{stroke:var(--g700);transform:translateY(-3px)}
+.seg h3{font-size:26px;margin-bottom:8px}
+.seg p{font-size:14.5px;color:var(--ink2);margin:0}
+.who-foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-top:44px}
+.who-foot p{font:500 clamp(24px,2.6vw,34px)/1.2 var(--serif);font-variant-numeric:lining-nums;margin:0;max-width:680px}
+.who-foot p em{color:var(--g700)}
+
+/* ---------- FAQ ---------- */
+.faq{background:var(--m50)}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,90px)}
+.qa{border-top:1px solid var(--m100)}
+.qa details{border-bottom:1px solid var(--m100)}
+.qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;font:500 clamp(22px,2vw,27px)/1.25 var(--serif);font-variant-numeric:lining-nums;color:var(--ink)}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary i{flex:0 0 auto;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--m100);position:relative;transition:all .3s}
+.qa summary i::before,.qa summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .3s}
+.qa summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.qa details[open] summary i{background:var(--f900);border-color:var(--f900)}
+.qa details[open] summary i::before,.qa details[open] summary i::after{background:var(--g300)}
+.qa details[open] summary i::after{transform:translate(-50%,-50%) rotate(0)}
+.qa .ans{padding:0 50px 26px 0;color:var(--ink2);font-size:16.5px}
+.qa .ans p:last-child{margin:0}
+
+/* ---------- formulário ---------- */
+.contact{overflow:hidden}
+.contact .wm-big{position:absolute;right:-180px;bottom:-200px;width:640px;color:rgba(234,241,234,.035);animation:spin 90s linear infinite;z-index:-1}
+@keyframes spin{to{transform:rotate(360deg)}}
+.c-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,80px);align-items:start}
+.promise{list-style:none;padding:0;margin:0 0 34px}
+.promise li{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid rgba(234,241,234,.1);color:var(--s200);font-size:16px}
+.promise li b{display:block;color:var(--m50);font-weight:600;margin-bottom:2px}
+.promise svg{flex:0 0 auto;width:22px;height:22px;stroke:var(--g500);fill:none;stroke-width:1.8;margin-top:3px}
+.alt{display:flex;flex-wrap:wrap;gap:12px}
+.form{background:var(--paper);color:var(--ink);border-radius:28px;padding:clamp(24px,3.6vw,42px);box-shadow:0 60px 100px -60px rgba(0,0,0,.7)}
+.form h3{font-size:32px;margin-bottom:6px}
+.form .sub{color:var(--ink2);font-size:15px;margin-bottom:26px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f{margin-bottom:16px;position:relative}
+.f label{display:block;font-size:13.5px;font-weight:600;color:var(--ink2);margin-bottom:6px}
+.f label i{color:var(--g700);font-style:normal}
+.f input,.f select{width:100%;height:52px;padding:0 16px;border-radius:var(--r-sm);border:1.5px solid var(--m100);background:#fff;font:500 16px var(--sans);color:var(--ink);transition:border-color .2s,box-shadow .2s}
+.f select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234A5F57' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.f input:focus,.f select:focus{outline:none;border-color:var(--g500);box-shadow:0 0 0 4px rgba(197,163,99,.18)}
+.f input[aria-invalid="true"]{border-color:#B4532A}
+.drop{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--r-sm);border:1.5px dashed var(--s300);background:#fff;cursor:pointer;transition:border-color .2s,background .2s}
+.drop:hover,.drop.over{border-color:var(--g500);background:#FFFDF6}
+.drop svg{flex:0 0 auto;width:36px;height:36px;padding:8px;border-radius:10px;background:var(--m50);stroke:var(--f700);fill:none;stroke-width:1.8}
+.drop b{display:block;font-size:15px;color:var(--ink)}
+.drop span{font-size:13px;color:var(--s400)}
+.drop input{position:absolute;width:1px;height:1px;opacity:0}
+.fstat{display:none;margin-top:10px;padding:12px 14px;border-radius:12px;font-size:14px;gap:10px;align-items:flex-start}
+.fstat.show{display:flex}
+.fstat.ok{background:#E6F0E2;color:#2C5A2A}
+.fstat.err{background:#FBE9E1;color:#8E3518}
+.fstat.chk{background:var(--m50);color:var(--f700)}
+.fstat b{display:block}
+.spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(58,77,70,.25);border-top-color:var(--f700);animation:spin .7s linear infinite;flex:0 0 auto;margin-top:2px}
+.consent{display:flex;gap:12px;align-items:flex-start;margin:18px 0 22px;font-size:12.5px;line-height:1.55;color:var(--ink2)}
+.consent input{flex:0 0 auto;width:20px;height:20px;margin-top:1px;accent-color:var(--f800)}
+.consent a{color:var(--f700);font-weight:600}
+.form .btn{width:100%}
+.form .btn[disabled]{opacity:.6;cursor:progress;transform:none}
+.msg{display:none;margin-top:14px;padding:14px 16px;border-radius:12px;font-size:14.5px}
+.msg.show{display:block}
+.msg.ok{background:#E6F0E2;color:#2C5A2A}
+.msg.err{background:#FBE9E1;color:#8E3518}
+.msg.info{background:var(--m50);color:var(--f700)}
+.msg a{font-weight:700;color:inherit}
+.hp{position:absolute;left:-5000px;width:1px;height:1px;overflow:hidden}
+.done{text-align:center;padding:30px 6px}
+.done .mark{width:64px;margin:0 auto 18px;color:var(--g500)}
+.done h3{font-size:38px;margin-bottom:10px}
+.done p{color:var(--ink2)}
+
+/* ---------- rodapé ---------- */
+.foot{background:var(--f950);color:var(--s300);padding:80px 0 34px;font-size:15px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid rgba(234,241,234,.08)}
+.foot .brand{display:flex;margin:0}
+.foot .brand .mark{width:46px}
+.foot .brand b{font-size:24px}
+.foot h4{font:600 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--m50);margin:0 0 18px}
+.foot a{display:block;text-decoration:none;color:var(--s300);margin-bottom:10px;transition:color .2s}
+.foot a:hover{color:var(--g500)}
+.foot .tagline{max-width:340px;margin-top:20px}
+.legal{padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--s400)}
+.privacy{margin-top:26px;border:1px solid rgba(234,241,234,.08);border-radius:16px;padding:0 22px}
+.privacy summary{cursor:pointer;padding:18px 0;color:var(--m100);font-weight:600;font-size:14px}
+.privacy .body{font-size:13px;line-height:1.7;color:var(--s400);padding-bottom:20px;columns:2 320px;column-gap:40px}
+.privacy .body p{break-inside:avoid}
+.privacy b{color:var(--s200)}
+
+/* ---------- flutuantes ---------- */
+.fab{position:fixed;right:22px;bottom:22px;z-index:90;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:#25D366;color:#fff;box-shadow:0 18px 40px -12px rgba(0,0,0,.45);transform:scale(0);transition:transform .45s var(--ease)}
+.fab.show{transform:scale(1)}
+.fab svg{width:30px;height:30px;fill:currentColor}
+.fab::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:ring 2.6s ease-out infinite}
+.mbar{display:none}
+
+/* ---------- responsivo ---------- */
+@media (max-width:1060px){
+  .nav{display:none}
+  .burger{display:block}
+  .nav.open{display:flex;position:absolute;top:78px;left:0;right:0;flex-direction:column;gap:0;padding:8px 28px 22px;background:rgba(22,31,28,.97);backdrop-filter:blur(14px)}
+  .nav.open a{padding:14px 0;border-bottom:1px solid rgba(234,241,234,.08);font-size:17px}
+  .hero-grid{grid-template-columns:1fr}
+  .scene-wrap{max-width:720px;margin:0 auto;width:100%}
+  .sim-grid,.how-grid,.faq-grid,.c-grid{grid-template-columns:1fr}
+  .how-sticky{position:static}
+  .receipt-wrap{position:relative;top:auto}
+  .segs{grid-template-columns:repeat(2,1fr)}
+  .t-big{grid-column:span 6;grid-row:auto;min-height:320px}
+  .t-3,.t-2,.t-4{grid-column:span 3}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 18px}
+  .hdr .cta .btn-gold{display:none}
+  .hero{padding-top:104px;min-height:auto}
+  .hero h1{font-size:clamp(46px,13.5vw,64px)}
+  .scene .lbl,.scene .lbl-g{display:none}
+  .billcard{width:54%;padding:12px 14px;top:0}
+  .billcard .new{font-size:24px}
+  .scroll-hint{display:none}
+  .marquee ul{font-size:21px;padding:16px 14px;gap:26px}
+  .marquee li{gap:26px}
+  .bento{grid-template-columns:1fr}
+  .t-big,.t-3,.t-2,.t-4{grid-column:span 1}
+  .segs{grid-template-columns:1fr}
+  .seg{padding:24px 20px}
+  .row{grid-template-columns:1fr}
+  .receipt{padding:24px 22px 36px}
+  .stamp{width:92px;height:92px;right:-4px;top:-34px}
+  .stamp b{font-size:26px}
+  .foot-grid{grid-template-columns:1fr}
+  .qa .ans{padding-right:0}
+  .fab{display:none}
+  .mbar{display:flex;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:95;gap:8px;padding:8px;border-radius:999px;background:rgba(22,31,28,.92);backdrop-filter:blur(12px);box-shadow:0 18px 40px -16px rgba(0,0,0,.6);transform:translateY(140%);transition:transform .45s var(--ease)}
+  .mbar.show{transform:none}
+  .mbar .btn{flex:1;min-height:46px;padding:0 14px;font-size:15px}
+  .mbar .wa{--bg:#25D366;--fg:#fff}
+  .foot{padding-bottom:110px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .js [data-r]{opacity:1;transform:none}
+  .js .hero h1 .w>span{transform:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mk" viewBox="0 0 362 319"><path fill-rule="evenodd" d="M266.2 5.5 L259.8 9.2 L259 10 L259 11.2 L262.8 17 L270 30.5 L271 31.5 L277 42.5 L279 45.2 L281 49.5 L282 50.5 L293.8 71 L293.8 72.2 L286.8 84 L286.2 84 L284.8 82.2 L284.8 81.5 L283.8 80.5 L281.8 76.2 L279.8 73.5 L277.8 69.2 L272.8 60.5 L271.8 59.5 L268.8 54.2 L268.8 53.5 L267.8 52.5 L261.8 41.2 L260.8 40.2 L260.8 39.5 L259.8 38.5 L255.8 31.5 L253.8 27.2 L252.8 26.2 L252.8 25.5 L251.8 24.5 L246.8 15.2 L245.8 14.2 L245.8 13.5 L244.8 12.5 L241.5 6.8 L240.2 6.5 L235.2 10 L234.5 10 L234 10.5 L234 12 L280.8 93.5 L274.8 104.8 L273.8 105.5 L272.8 104.8 L268.8 97.5 L267.8 96.5 L216.2 7 L215.2 7 L209 12 L209 12.8 L212 17.2 L219.2 30.8 L223 36.5 L223 37.2 L224 38.2 L226 42.5 L227 43.5 L227 44.2 L228 45.2 L238 63.5 L239 64.5 L239 65.2 L240 66.2 L245 75.5 L246 76.5 L246 77.2 L247 78.2 L249 82.5 L251 85.2 L251 86 L268 115 L268 116.2 L267 117.2 L261 127.8 L259.8 127.2 L240.8 93.2 L239.8 92.2 L238.5 89.5 L232.8 80.2 L223.5 63.2 L191.8 8.5 L191 7.8 L189.8 8 L185.2 11 L183.8 12.8 L255 137.2 L255 138.5 L248.2 149.8 L246.8 148.5 L246.8 147.8 L243.8 143.2 L243.8 142.5 L239.8 136.5 L237.8 132.2 L235.8 129.5 L233.8 125.2 L232.8 124.2 L232.8 123.5 L231.8 122.5 L219.8 101.2 L218.8 100.2 L218.8 99.5 L217.8 98.5 L210.8 86.2 L210.8 85.5 L209.8 84.5 L202.5 71.2 L198.8 65.5 L196.8 61.2 L194.8 58.5 L179.5 31 L176 25.5 L167.5 10 L166.5 9 L89 9.2 L89.2 18 L160 18 L162 19.5 L167.8 29.5 L167.8 30.2 L167 30.8 L78.5 30.5 L77.8 31.2 L78 39.8 L172.8 39.8 L174.8 41.8 L180.5 52.2 L179.8 53 L66.8 53 L66.2 53.5 L66.2 61.8 L67 62.5 L185.5 62.5 L186.2 62.8 L187.5 64.2 L192.8 73.2 L193 74.5 L192.5 75 L55.2 75 L54.8 75.2 L54.8 84.2 L55.2 84.8 L199.2 84.8 L206 96.2 L205.5 97.2 L43.8 97 L42.2 98.5 L37 108.5 L29 122.5 L28 123.5 L28 124.2 L27 125.2 L10 155.5 L6.2 161.2 L6 163.2 L12 168.8 L12.5 168.8 L13.8 167.2 L13.8 166.5 L14.8 165.5 L27.8 142.5 L28.8 141.5 L47.8 108 L48.8 107 L61.8 107 L62.2 107.5 L61.8 109.5 L56 119.2 L54 123.5 L53 124.5 L42 144.2 L41 145.2 L39 149.5 L38 150.5 L38 151.2 L37 152.2 L34 158.2 L31 162.8 L28 168.5 L27 169.5 L27 170.2 L26 171.2 L20 182.2 L19 183.2 L19.2 184.8 L25.2 189.8 L26.5 189.5 L27 188 L34.8 175.2 L44.8 157.2 L45.8 156.2 L45.8 155.5 L46.8 154.5 L67.8 117.2 L71.5 111.5 L72.8 108.5 L74.5 106.8 L87 106.8 L87.8 107.2 L87.8 108.2 L86 111.5 L85 112.5 L82 118.5 L81 119.5 L74 132.5 L73 133.5 L70 139.5 L69 140.5 L52 170.2 L50 174.5 L49 175.5 L49 176.2 L48 177.2 L46 181.5 L45 182.5 L45 183.2 L44 184.2 L42 188.5 L32 205.2 L38 211.5 L39 211.5 L47.8 196.2 L48.8 195.2 L63.8 168.5 L64.8 167.5 L73.8 152 L73.8 151.2 L74.8 150.2 L84.8 132.2 L86.8 129.5 L88.8 125.2 L90.8 122.5 L99 107.5 L100.5 106.8 L112.8 107 L113.2 107.5 L113 109 L110 114.5 L109 115.5 L109 116.2 L106 121.5 L105 122.5 L105 123.2 L104 124.2 L102 128.5 L101 129.5 L101 130.2 L97 137.2 L96 138.2 L86 156.5 L85 157.5 L76.8 172.5 L73 178.2 L67 189.2 L66 190.2 L64 194.5 L63 195.5 L63 196.2 L62 197.2 L57 206.5 L56 207.5 L52 215.2 L45.2 226 L45.2 226.8 L51.8 232 L52.8 232 L58.8 221.5 L59.8 220.5 L61.8 216.2 L62.8 215.2 L62.8 214.5 L66.8 208.2 L76.8 190.2 L77.8 189.2 L80.8 183.2 L81.8 182.2 L85 176 L86.5 174 L103.8 143.2 L104.8 142.2 L107.8 136.2 L108.8 135.2 L108.8 134.5 L109.8 133.5 L111.8 129.2 L115.8 122.2 L116.8 121.2 L116.8 120.5 L117.8 119.5 L123.8 108.2 L125.5 106.8 L138.2 106.8 L139 107.5 L139 108.5 L135.2 114.2 L101 174.5 L100 175.5 L97 180.8 L97 181.5 L96 182.5 L93 187.8 L93 188.5 L89 194.5 L74 221.2 L71.2 225.2 L67 233.5 L66 234.5 L66 235.2 L65 236.2 L58.2 248 L59 250.2 L60 251.2 L95.5 313.8 L98.5 313.8 L100.2 312.8 L102 312.8 L104.5 311.8 L104.8 310.2 L103.8 309.2 L103.8 308.5 L102.8 307.5 L97.8 298.2 L95.8 295.5 L93.8 291.2 L92.8 290.2 L86.8 279.2 L85.8 278.2 L85.8 277.5 L84.8 276.5 L82.8 272.2 L81.8 271.2 L77.5 263.2 L69.8 250.5 L69.2 249 L69.5 248 L76.2 236.8 L78 238.5 L84 249.5 L85 250.5 L120.2 312.5 L122.5 312.8 L124.2 311.8 L125.8 311.8 L127.5 310.8 L129 310.5 L129 309 L82 226.8 L88 215.8 L89 214.8 L90.2 215.5 L91 217.2 L92 218.2 L98 229.5 L99 230.5 L110 250.2 L111 251.2 L113 255.5 L114 256.5 L114 257.2 L115 258.2 L145.8 311.8 L147.5 311.8 L149 310.8 L150.8 310.5 L151.8 309.8 L153 309.8 L154 308.5 L153.8 307.2 L148.8 298.5 L147.8 297.5 L140.8 284.5 L135 275.2 L130.8 267.2 L129.8 266.2 L126.8 260.2 L125.8 259.2 L115.8 241.2 L114.8 240.2 L114.8 239.5 L113.8 238.5 L111.8 234.2 L110.8 233.2 L110.8 232.5 L106.8 226.5 L104.8 222.2 L103.8 221.2 L103.8 220.5 L102.8 219.5 L100.8 215.2 L99.8 214.2 L94.8 205.5 L95 203.2 L101.5 192.5 L102.8 192.8 L109 204.5 L110 205.5 L110 206.2 L111 207.2 L116 216.5 L117 217.5 L117 218.2 L118 219.2 L120 223.5 L121 224.5 L121 225.2 L122 226.2 L135 249.5 L136 250.5 L136 251.2 L137 252.2 L141.2 260.2 L144 264.2 L146 268.5 L147 269.5 L147 270.2 L158 289.5 L159 290.5 L165 301.5 L167 304.2 L170 310.5 L172 310.8 L173.5 309.8 L176.8 308.8 L179 307.2 L169.8 290.5 L168.8 289.5 L163.8 280.2 L162.8 279.2 L162.8 278.5 L161.8 277.5 L159.8 273.2 L158.8 272.2 L158.8 271.5 L157.8 270.5 L151.8 259.5 L150.8 258.5 L137.8 235.2 L136.8 234.2 L136.8 233.5 L135.8 232.5 L122.8 209.2 L121.8 208.2 L121.8 207.5 L120.8 206.5 L113.5 193.2 L107.8 184 L107.2 182.2 L114.2 170.2 L115.8 171 L128 193.2 L129 194.2 L149 229.5 L150 230.5 L150 231.2 L151 232.2 L153 236.5 L155 239.2 L157 243.5 L158 244.5 L172 269.5 L173 270.5 L173 271.2 L174 272.2 L196.5 311.2 L197.5 311.8 L272.8 311.2 L272.8 302.2 L272.2 301.8 L202 301.8 L200.8 300.5 L194.8 290 L195.2 289.2 L284.2 289.2 L284.8 288.8 L284.5 280 L189.5 280 L188 278.2 L182.2 267.2 L182.8 266.8 L295.8 266.8 L296.2 266.5 L296.5 258.8 L295.5 257.2 L176.5 257.2 L173.8 253.5 L169.5 245.8 L170.2 244.8 L307.5 244.8 L307.8 236 L307.2 235.2 L164.2 235.5 L162.8 234.5 L160.8 230.2 L156.8 224 L156.8 223 L157.2 222.5 L319.5 222.5 L321.5 220 L326.8 210.2 L328.8 207.5 L337.8 191.2 L338.8 190.2 L338.8 189.5 L339.8 188.5 L351 168.2 L356.5 159.2 L356.8 157.5 L351.2 150.8 L350.5 151 L345.2 159.5 L337 174.5 L333 180.5 L315 212.2 L313.2 213.2 L301 213.2 L300 212.5 L316.8 183.2 L317.8 182.2 L332.8 155.5 L343.8 137.2 L343.8 136.2 L337.5 129.2 L330 142.2 L329 143.2 L323 154.5 L322 155.5 L316 166.5 L315 167.5 L315 168.2 L314 169.2 L305 185.5 L304 186.5 L304 187.2 L301 192.5 L300 193.5 L289.2 212.2 L288 213.2 L275.5 213.2 L274.8 212.8 L274.8 211.5 L275.8 210.5 L277.8 206.5 L280.8 202 L285.8 193.2 L285.8 192.5 L286.8 191.5 L306.8 156.2 L307.8 155.2 L317.8 137.2 L318.8 136.2 L324.8 125.2 L325.8 124.2 L330.8 115.5 L329.8 113.5 L324.5 107.8 L323 109.5 L317 120.5 L316 121.5 L264 212.2 L262.2 213.2 L249.5 213.2 L248.8 212.5 L256.8 198.5 L257.8 197.5 L266.8 181.2 L267.8 180.2 L267.8 179.5 L268.8 178.5 L270.8 174.2 L275.8 166.5 L278.8 160.5 L284.5 151.2 L296.8 129.2 L298.8 126.5 L300.8 122.2 L301.8 121.2 L301.8 120.5 L302.8 119.5 L306.8 112.5 L308.8 108.2 L316.8 95 L316.8 92.8 L311.5 87.2 L310.8 87.2 L309 89.5 L309 90.2 L308 91.2 L306 95.5 L302 102.5 L301 103.5 L301 104.2 L297 110.5 L290 123.2 L287.2 127.2 L279 142.2 L275.2 148 L273 152.5 L272 153.5 L272 154.2 L271 155.2 L260.8 173.8 L257 179.5 L237.5 213 L224.5 213.2 L223.8 212.5 L240.8 182.2 L241.8 181.2 L241.8 180.5 L242.8 179.5 L244.8 175.2 L245.8 174.2 L256.8 154.2 L257.8 153.2 L263.8 142.2 L264.8 141.2 L304.5 72 L304.5 71.2 L301.8 67.2 L301.8 66.5 L297.8 60.2 L290.8 47.2 L289.8 46.2 L289.8 45.5 L288.8 44.5 L278.8 26.5 L277.8 25.5 L277.8 24.8ZM150.5 107 L211.2 106.8 L213 108.2 L222 124.5 L223 125.5 L229 136.5 L230 137.5 L236 148.5 L237 149.5 L242.8 159.5 L242.8 160.2 L212.2 212.8 L211.2 213.2 L151.5 213.2 L150 212.2 L142.8 199.5 L138.8 193.5 L136.8 189.2 L135.8 188.2 L119.8 160.2Z"/></symbol>
+  <symbol id="wa" viewBox="0 0 24 24"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.9L2.3 21.8l4.8-1.3A9.8 9.8 0 1 0 12 2.2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.7 7.3c.2-.4.4-.4.7-.4h.6c.2 0 .4 0 .5.4l.8 1.9c.1.2.1.4 0 .6l-.5.7c-.1.2-.1.4 0 .6.7 1.2 1.7 2.1 2.9 2.8.2.1.4.1.5-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.3.4.5 0 .6-.2 1.4-.8 1.8-.7.5-1.6.6-2.4.4-1.9-.6-3.5-1.8-4.8-3.3-1-1.2-1.8-2.6-1.9-4.1 0-.7.3-1.4.7-1.8z" fill="currentColor"/></symbol>
+</svg>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<div class="progress" aria-hidden="true"></div>
+
+<!-- ================= CABEÇALHO ================= -->
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="brand" href="#topo" aria-label="Aurig Energy — início">
+      <svg class="mark" aria-hidden="true"><use href="#mk"/></svg>
+      <span><b>AURIG</b><small>ENERGY</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="#simulador">Simulador</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#por-que">Por que a Aurig</a>
+      <a href="#para-quem">Para quem</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <div class="cta">
+      <a class="btn btn-gold" href="#diagnostico">Diagnóstico grátis</a>
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+<a id="topo"></a>
+
+<!-- ================= HERO ================= -->
+<section class="hero dark grain" id="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <a class="persona" id="persona" href="#simulador" hidden>
+        <span class="dot"><svg class="mark" aria-hidden="true"><use href="#mk"/></svg></span>
+        <span>Estimativa pronta para <b id="pEmp"></b> →</span>
+      </a>
+      <span class="eyebrow">Consultoria inteligente em energia</span>
+      <h1 id="h1"><span class="ln">A mesma energia.</span><span class="ln"><em>Outra conta.</em></span></h1>
+      <p class="lede">Sua empresa paga <b>até 25% menos</b> na conta de luz recebendo créditos de usinas solares parceiras. Sem investimento, sem obra e sem contrato de longo prazo.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#simulador">Calcular minha economia <span class="arr">→</span></a>
+        <a class="btn btn-line js-wa" href="#" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#wa"/></svg> Falar no WhatsApp</a>
+      </div>
+      <ul class="ticks">
+        <li>Mesma distribuidora</li>
+        <li>Mesmo medidor</li>
+        <li>Nada instalado no seu imóvel</li>
+      </ul>
+      <div class="scroll-hint" aria-hidden="true"><i></i>Role para ver como funciona</div>
+    </div>
+    <div class="scene-wrap">
+      <svg class="scene" id="scene" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Ilustração: a energia sai de uma usina solar parceira, passa pela rede da distribuidora e chega à sua empresa como créditos que reduzem a conta."></svg>
+      <div class="billcard" aria-hidden="true">
+        <div class="k">Sua conta de luz <b id="bcPct">−25%</b></div>
+        <div class="old" id="bcOld">R$ 10.000</div>
+        <div class="new" id="bcNew">R$ 7.500</div>
+        <div class="bar"><i id="bcBar"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEGMENTOS ================= -->
+<div class="marquee" aria-label="Segmentos atendidos">
+  <div class="track">
+    <ul>
+      <li>Supermercados <svg class="mark" aria-hidden="true"><use href="#mk"/></svg></li>
+      <li>Hotéis e pousadas <svg class="mark" aria-hidden="true"><use href="#mk"/></svg></li>
+      <li>Clínicas <svg class="mark" aria-hidden="true"><use href="#mk"/></svg></li>
+      <li>Indústrias <svg class="mark" aria-hidden="true"><use href="#mk"/></svg></li>
+      <li>Padarias <svg class="mark" aria-hidden="true"><use href="#mk"/></svg></li>
+      <li>Restaurantes <svg class="mark" aria-hidden="true"><use href="#mk"/></svg></li>
+      <li>Condomínios <svg class="mark" aria-hidden="true"><use href="#mk"/></svg></li>
+      <li>Escolas <svg class="mark" aria-hidden="true"><use href="#mk"/></svg></li>
+      <li>Agronegócio <svg class="mark" aria-hidden="true"><use href="#mk"/></svg></li>
+      <li>Academias <svg class="mark" aria-hidden="true"><use href="#mk"/></svg></li>
+    </ul>
+    <ul aria-hidden="true">
+      <li>Supermercados <svg class="mark"><use href="#mk"/></svg></li>
+      <li>Hotéis e pousadas <svg class="mark"><use href="#mk"/></svg></li>
+      <li>Clínicas <svg class="mark"><use href="#mk"/></svg></li>
+      <li>Indústrias <svg class="mark"><use href="#mk"/></svg></li>
+      <li>Padarias <svg class="mark"><use href="#mk"/></svg></li>
+      <li>Restaurantes <svg class="mark"><use href="#mk"/></svg></li>
+      <li>Condomínios <svg class="mark"><use href="#mk"/></svg></li>
+      <li>Escolas <svg class="mark"><use href="#mk"/></svg></li>
+      <li>Agronegócio <svg class="mark"><use href="#mk"/></svg></li>
+      <li>Academias <svg class="mark"><use href="#mk"/></svg></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ================= SIMULADOR ================= -->
+<section class="sec sim" id="simulador">
+  <div class="wrap">
+    <div class="sec-head" data-r>
+      <span class="eyebrow">Simulador</span>
+      <h2>Quanto da sua conta <em>volta para o caixa?</em></h2>
+      <p>Digite ou arraste até o valor médio da sua conta de luz. O resultado aparece na hora.</p>
+    </div>
+    <div class="sim-grid">
+      <div class="sim-panel" data-r>
+        <label class="sim-label" for="valor">Conta de luz média por mês <span>valor com impostos</span></label>
+        <div class="amount"><span class="cur">R$</span><input id="valor" size="7" inputmode="numeric" autocomplete="off" value="10.000" aria-describedby="simNote"></div>
+        <input class="range" id="faixa" type="range" min="0" max="1000" step="1" aria-label="Ajustar valor da conta">
+        <div class="scale"><span>R$ 1 mil</span><span>R$ 10 mil</span><span>R$ 150 mil</span></div>
+        <div class="sim-label" id="cenLbl">Cenário de desconto</div>
+        <div class="chips" role="group" aria-labelledby="cenLbl">
+          <button class="chip" type="button" data-pct="15" aria-pressed="false">15% <small>conservador</small></button>
+          <button class="chip" type="button" data-pct="20" aria-pressed="false">20% <small>provável</small></button>
+          <button class="chip" type="button" data-pct="25" aria-pressed="true">25% <small>máximo</small></button>
+        </div>
+        <div class="res" aria-live="polite">
+          <div class="hl"><small>Economia por mês</small><b id="rMes">R$ 2.500</b></div>
+          <div><small>Por ano</small><b id="rAno">R$ 30.000</b></div>
+          <div><small>Em 5 anos</small><b id="r5">R$ 150.000</b></div>
+        </div>
+        <p class="equiv" id="equiv">É como receber <b>3 contas de luz de graça</b> por ano.</p>
+        <p class="sim-note" id="simNote">Estimativa ilustrativa. O percentual final depende da sua distribuidora, do seu histórico de consumo e da usina disponível na sua região — confirmamos tudo no diagnóstico gratuito.</p>
+      </div>
+      <div class="receipt-wrap" data-r style="--d:2">
+        <div class="receipt" aria-hidden="true">
+          <div class="rc-top">
+            <div><div class="t">Comparativo mensal</div><div class="d" id="rcDist">Sua distribuidora</div></div>
+            <svg class="mark"><use href="#mk"/></svg>
+          </div>
+          <div class="rc-row strike"><span>Hoje você paga</span><b id="rcHoje">R$ 10.000</b></div>
+          <div class="rc-row"><span>Com a Aurig <small>(distribuidora + créditos)</small></span><b id="rcCom">R$ 7.500</b></div>
+          <div class="rc-row save"><span>Economia</span><b id="rcEco">− R$ 2.500</b></div>
+          <div class="rc-bar"><span class="keep" id="rcKeep" style="flex-basis:75%"></span><span class="cut" id="rcCut" style="flex-basis:25%"></span></div>
+          <div class="rc-leg"><span>o que você continua pagando</span><span>o que fica no caixa</span></div>
+          <div class="rc-total"><span>Fica no seu caixa em 12 meses</span><b id="rcAno">R$ 30.000</b></div>
+        </div>
+        <div class="stamp" id="stamp" aria-hidden="true"><div><b id="stPct">−25%</b><small>na conta</small></div></div>
+        <div class="sim-cta">
+          <a class="btn btn-ink" href="#diagnostico" id="simGo">Confirmar com a minha conta <span class="arr">→</span></a>
+          <p>Diagnóstico gratuito em até 48h.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMO FUNCIONA ================= -->
+<section class="sec how" id="como-funciona">
+  <div class="wrap how-grid">
+    <div class="how-sticky">
+      <div class="sec-head" data-r>
+        <span class="eyebrow">Como funciona</span>
+        <h2>Do PDF à conta menor, <em>em quatro passos.</em></h2>
+        <p>A energia continua chegando pela rede da sua distribuidora, como sempre. O que muda é quem gera — e quanto você paga.</p>
+      </div>
+      <a class="btn btn-ink" href="#diagnostico" data-r style="--d:1">Começar pelo passo 1 <span class="arr">→</span></a>
+    </div>
+    <ol class="steps" id="steps">
+      <li class="step" data-r><span class="n">01</span>
+        <h3>Você envia a conta</h3>
+        <p>O PDF original da distribuidora, baixado do site ou do aplicativo. Leva um minuto e é tudo o que precisamos para começar.</p>
+      </li>
+      <li class="step" data-r><span class="n">02</span>
+        <h3>Diagnóstico em até 48h</h3>
+        <p>Analisamos seu histórico de consumo, sua tarifa e sua distribuidora, e devolvemos quanto você economiza de verdade — em reais, não em promessa.</p>
+        <span class="tag">Gratuito e sem compromisso</span>
+      </li>
+      <li class="step" data-r><span class="n">03</span>
+        <h3>Adesão 100% digital</h3>
+        <p>Você assina online. A Aurig cuida do cadastro junto à distribuidora e da alocação dos créditos de energia da usina parceira para a sua unidade.</p>
+      </li>
+      <li class="step" data-r><span class="n">04</span>
+        <h3>A conta chega menor</h3>
+        <p>Depois que a distribuidora homologa o cadastro — em geral, de um a três ciclos de faturamento — os créditos passam a abater a sua conta todo mês.</p>
+        <span class="tag">Sem obra, sem equipamento</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= POR QUE ================= -->
+<section class="sec dark grain" id="por-que">
+  <div class="wrap">
+    <div class="sec-head" data-r>
+      <span class="eyebrow">Por que a Aurig</span>
+      <h2>Economia que aparece na conta, <em>não na letra miúda.</em></h2>
+    </div>
+    <div class="bento">
+      <article class="tile t-big" data-r>
+        <svg class="mark wm" aria-hidden="true"><use href="#mk"/></svg>
+        <div class="num">R$&nbsp;0</div>
+        <h3>de investimento</h3>
+        <p>Você não compra placa, não instala equipamento e não reforma nada. A economia começa pela conta, não pelo seu caixa.</p>
+      </article>
+      <article class="tile t-3" data-r style="--d:1">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 13l3.5-3.5M8 19.5h8M12 5V3"/></svg></div>
+        <h3>Mesma distribuidora, mesmo medidor</h3>
+        <p>Nada muda na sua operação. A energia continua chegando pela rede, sem risco de falta.</p>
+      </article>
+      <article class="tile t-3" data-r style="--d:2">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
+        <h3>Sem contrato de longo prazo</h3>
+        <p>As condições de entrada e de saída ficam claras na proposta, antes de você assinar qualquer coisa.</p>
+      </article>
+      <article class="tile t-2" data-r>
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div>
+        <h3>Energia renovável</h3>
+        <p>Créditos gerados por usinas solares parceiras.</p>
+      </article>
+      <article class="tile t-4" data-r style="--d:1">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg></div>
+        <h3>Consultoria de verdade, não venda empurrada</h3>
+        <p>Analisamos sua conta e só recomendamos o que fecha a conta. Se não fizer sentido para você, a gente diz. Quando faz, o diagnóstico também avalia:</p>
+        <div class="also"><span>Energia solar própria</span><span>Baterias</span><span>Carregadores de veículos elétricos</span><span>Automação e telemetria</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARA QUEM ================= -->
+<section class="sec who" id="para-quem">
+  <div class="wrap">
+    <div class="sec-head" data-r>
+      <span class="eyebrow">Para quem</span>
+      <h2>Se a energia pesa no custo fixo, <em>essa conversa é sua.</em></h2>
+      <p>Atendemos empresas de comércio, serviços, indústria e agro que querem margem de volta sem mexer na operação.</p>
+    </div>
+    <div class="segs">
+      <div class="seg" data-r><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 10.2a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg><h3>Supermercados</h3><p>Refrigeração ligada 24 horas é conta alta 12 meses por ano.</p></div>
+      <div class="seg" data-r style="--d:1"><svg viewBox="0 0 24 24"><path d="M3 18V7M3 13h18v5M21 13a3 3 0 0 0-3-3h-7v3"/><circle cx="7" cy="11" r="1.6"/></svg><h3>Hotéis e pousadas</h3><p>Ar-condicionado, lavanderia e água quente sem pesar na diária.</p></div>
+      <div class="seg" data-r style="--d:2"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg><h3>Clínicas</h3><p>Equipamentos e climatização que não podem desligar.</p></div>
+      <div class="seg" data-r style="--d:3"><svg viewBox="0 0 24 24"><path d="M3 21V10l5 3v-3l5 3v-3l5 3V4h3v17z"/><path d="M7 17h2M12 17h2M17 17h1"/></svg><h3>Indústrias</h3><p>Motores, compressores e linhas de produção mais competitivos.</p></div>
+      <div class="seg" data-r><svg viewBox="0 0 24 24"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 21V3c-2 1-3 4-3 7h3"/></svg><h3>Restaurantes e padarias</h3><p>Fornos, câmaras frias e cozinha industrial.</p></div>
+      <div class="seg" data-r style="--d:1"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1M11 21v-3h2v3"/></svg><h3>Condomínios</h3><p>Áreas comuns, elevadores e bombas com taxa menor.</p></div>
+      <div class="seg" data-r style="--d:2"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg><h3>Escolas</h3><p>Salas climatizadas e laboratórios com custo previsível.</p></div>
+      <div class="seg" data-r style="--d:3"><svg viewBox="0 0 24 24"><path d="M12 21V11M12 11c0-4 3-7 8-7 0 5-3 8-8 7zM12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg><h3>Agronegócio</h3><p>Irrigação, secagem e armazenagem no campo.</p></div>
+    </div>
+    <div class="who-foot" data-r>
+      <p>Não viu o seu segmento? <em>Se tem conta de luz, a gente analisa.</em></p>
+      <a class="btn btn-ink" href="#diagnostico">Analisar minha conta <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DÚVIDAS ================= -->
+<section class="sec faq" id="duvidas">
+  <div class="wrap faq-grid">
+    <div class="sec-head" data-r>
+      <span class="eyebrow">Dúvidas</span>
+      <h2>O que todo mundo <em>pergunta antes.</em></h2>
+      <p>Não achou a sua? Chame no WhatsApp — quem responde é um consultor, não um robô.</p>
+      <a class="btn btn-ink js-wa" href="#" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#wa"/></svg> Perguntar no WhatsApp</a>
+    </div>
+    <div class="qa" data-r style="--d:1">
+      <details open><summary>Preciso investir alguma coisa? <i aria-hidden="true"></i></summary><div class="ans"><p>Não. Você não compra equipamento, não instala nada e não faz obra. Você passa a receber créditos de energia de uma usina solar parceira, que abatem a sua conta.</p></div></details>
+      <details><summary>Vou trocar de distribuidora ou de medidor? <i aria-hidden="true"></i></summary><div class="ans"><p>Não. A energia continua chegando pela mesma rede, com o mesmo medidor e a mesma qualidade de fornecimento. A distribuidora apenas passa a descontar os créditos na sua fatura.</p></div></details>
+      <details><summary>Em quanto tempo a economia aparece? <i aria-hidden="true"></i></summary><div class="ans"><p>Depois da adesão, a distribuidora precisa homologar o cadastro. Em geral, os créditos começam a abater a conta entre o primeiro e o terceiro ciclo de faturamento.</p></div></details>
+      <details><summary>E se a usina gerar menos num mês? <i aria-hidden="true"></i></summary><div class="ans"><p>Você nunca fica sem energia: a rede da distribuidora continua atendendo normalmente. A geração da usina só define quantos créditos entram para reduzir a conta.</p></div></details>
+      <details><summary>Tem fidelidade ou multa? <i aria-hidden="true"></i></summary><div class="ans"><p>Trabalhamos sem contrato de longo prazo. Prazo, aviso prévio e condições de saída ficam por escrito na proposta, antes da assinatura — sem surpresa depois.</p></div></details>
+      <details><summary>Por que vocês pedem a conta em PDF? <i aria-hidden="true"></i></summary><div class="ans"><p>O PDF original da distribuidora traz o histórico de consumo e a tarifa exatos. É isso que permite calcular a sua economia real, e não uma estimativa genérica.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIAGNÓSTICO ================= -->
+<section class="sec dark grain contact" id="diagnostico">
+  <svg class="mark wm-big" aria-hidden="true"><use href="#mk"/></svg>
+  <div class="wrap c-grid">
+    <div>
+      <div class="sec-head" data-r>
+        <span class="eyebrow">Diagnóstico gratuito</span>
+        <h2>Descubra o número <em>exato</em> da sua economia.</h2>
+        <p>Envie seus dados e, se quiser, a conta em PDF. Um consultor devolve o diagnóstico em até 48h.</p>
+      </div>
+      <ul class="promise" data-r style="--d:1">
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span><b>Sem custo e sem compromisso</b>Você decide depois de ver os números.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span><b>Resposta em até 48h</b>Pelo WhatsApp ou e-mail, como preferir.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span><b>Dados protegidos</b>Usados apenas para a análise, nos termos da LGPD.</span></li>
+      </ul>
+      <div class="alt" data-r style="--d:2">
+        <a class="btn btn-line js-wa" href="#" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#wa"/></svg> Prefiro conversar agora</a>
+        <a class="btn btn-line" id="calBtn" href="#" target="_blank" rel="noopener" hidden>Agendar uma conversa</a>
+      </div>
+    </div>
+
+    <div class="form" id="formBox" data-r style="--d:1">
+      <form id="lead" novalidate>
+        <h3>Quero meu diagnóstico</h3>
+        <p class="sub">Leva menos de um minuto.</p>
+        <div class="row">
+          <div class="f"><label for="nome">Seu nome <i>*</i></label><input id="nome" name="nome" autocomplete="name" required></div>
+          <div class="f"><label for="empresa">Empresa <i>*</i></label><input id="empresa" name="empresa" autocomplete="organization" required></div>
+        </div>
+        <div class="row">
+          <div class="f"><label for="tel">WhatsApp <i>*</i></label><input id="tel" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" required></div>
+          <div class="f"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email"></div>
+        </div>
+        <div class="row">
+          <div class="f"><label for="cidade">Cidade / UF <i>*</i></label><input id="cidade" name="cidade" autocomplete="address-level2" placeholder="Ex.: Recife / PE" required></div>
+          <div class="f"><label for="dist">Distribuidora</label><select id="dist" name="distribuidora"><option value="">Selecione</option></select></div>
+        </div>
+        <div class="f">
+          <label for="pdf">Conta de luz em PDF <span style="font-weight:500;color:var(--s400)">(opcional, agiliza o diagnóstico)</span></label>
+          <label class="drop" id="drop" for="pdf">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 16v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"/></svg>
+            <span><b>Selecione ou arraste o PDF</b><span>Arquivo original da distribuidora · até 10 MB</span></span>
+            <input id="pdf" name="fatura" type="file" accept="application/pdf,.pdf">
+          </label>
+          <div class="fstat" id="fstat" role="status"><span id="fIco"></span><span><b id="fT"></b><span id="fM"></span></span></div>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="site">Site</label><input id="site" name="site" tabindex="-1" autocomplete="off"></div>
+        <div class="consent">
+          <input type="checkbox" id="ok" name="consentimento" required>
+          <label for="ok">Autorizo a Aurig Energy a tratar meus dados pessoais e os dados da conta de energia enviada para elaborar o diagnóstico e entrar em contato comercial, com fundamento no art. 7º, incisos I e V, da Lei nº 13.709/2018 (LGPD). Posso revogar esta autorização a qualquer momento, nos termos do art. 18 da mesma lei. <a href="#privacidade">Aviso de privacidade</a>.</label>
+        </div>
+        <button class="btn btn-gold" type="submit" id="send">Enviar e receber meu diagnóstico <span class="arr">→</span></button>
+        <div class="msg" id="msg" role="alert"></div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= RODAPÉ ================= -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#topo"><svg class="mark" aria-hidden="true"><use href="#mk"/></svg><span><b>AURIG</b><small>ENERGY</small></span></a>
+        <p class="tagline">Consultoria inteligente em energia. A mesma energia, outra conta.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <a href="#simulador">Simulador</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#para-quem">Para quem</a>
+        <a href="#duvidas">Dúvidas</a>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <a class="js-wa" href="#" target="_blank" rel="noopener" id="footWa">WhatsApp</a>
+        <a id="footMail" href="#" hidden></a>
+        <a href="#diagnostico">Diagnóstico gratuito</a>
+      </div>
+    </div>
+    <details class="privacy" id="privacidade">
+      <summary>Aviso de privacidade (LGPD)</summary>
+      <div class="body">
+        <p><b>1. Controlador.</b> <span class="js-ctrl">Aurig Energy</span>, na qualidade de controladora dos dados pessoais coletados neste site, nos termos do art. 5º, VI, da Lei nº 13.709/2018 (Lei Geral de Proteção de Dados Pessoais — LGPD).</p>
+        <p><b>2. Dados tratados.</b> Nome, empresa, telefone/WhatsApp, e-mail, cidade/UF, distribuidora e, quando enviada, a fatura de energia elétrica com os dados de consumo nela contidos.</p>
+        <p><b>3. Finalidades e bases legais.</b> Elaboração do diagnóstico de economia e contato comercial, com base no consentimento do titular (art. 7º, I) e em procedimentos preliminares relacionados a contrato a pedido do titular (art. 7º, V). Comunicações comerciais dirigidas a pessoas jurídicas podem se fundamentar no legítimo interesse do controlador (art. 7º, IX, c/c art. 10), sempre assegurado o direito de oposição.</p>
+        <p><b>4. Compartilhamento.</b> Os dados poderão ser compartilhados com usinas geradoras parceiras e com a distribuidora local exclusivamente para viabilizar a adesão contratada pelo titular, e com operadores de tecnologia que prestam serviços à Aurig, sob dever de confidencialidade.</p>
+        <p><b>5. Retenção.</b> Os dados são mantidos pelo tempo necessário ao cumprimento das finalidades acima, ao exercício regular de direitos (art. 16) e ao atendimento dos prazos prescricionais previstos no Código Civil (Lei nº 10.406/2002).</p>
+        <p><b>6. Direitos do titular.</b> Confirmação, acesso, correção, anonimização, portabilidade, eliminação, informação sobre compartilhamento e revogação do consentimento (art. 18), mediante solicitação pelos canais de contato desta página. Para deixar de receber comunicações, basta responder “sair” a qualquer mensagem.</p>
+        <p><b>7. Segurança.</b> Adotamos medidas técnicas e administrativas aptas a proteger os dados contra acessos não autorizados e situações acidentais ou ilícitas (art. 46). Registros de acesso são tratados nos termos da Lei nº 12.965/2014 (Marco Civil da Internet).</p>
+      </div>
+    </details>
+    <div class="legal">
+      <span>© <span id="ano"></span> <span class="js-ctrl">Aurig Energy</span>. Todos os direitos reservados.</span>
+      <span>Valores do simulador são estimativas e não constituem proposta comercial.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab js-wa" id="fab" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg aria-hidden="true"><use href="#wa"/></svg></a>
+<div class="mbar" id="mbar">
+  <a class="btn btn-gold" href="#simulador">Simular</a>
+  <a class="btn wa js-wa" href="#" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#wa"/></svg> WhatsApp</a>
+</div>
+<script>
+/* =====================================================================
+   CONFIG — edite aqui
+   ===================================================================== */
+const CONFIG = {
+  whatsapp: "5511997661060",            // 55 + DDD + número, só dígitos
+  mensagemWhatsapp: "Olá! Vim pelo site da Aurig e quero saber quanto economizo na conta de luz.",
+  webhookUrl: "",                        // webhook do Make (vazio = formulário abre o WhatsApp com os dados)
+  calendlyUrl: "",                       // link do Calendly (vazio = botão não aparece)
+  email: "",                             // e-mail de contato no rodapé (vazio = não aparece)
+  razaoSocial: "",                       // ex.: "Aurig Consultoria Ltda." (aparece no aviso de privacidade)
+  cnpj: "",                              // ex.: "00.000.000/0001-00"
+  contaPadrao: 10000,                    // valor inicial do simulador (R$)
+  contaMin: 1000, contaMax: 150000,      // limites do simulador
+  descontoPadrao: 25,                    // 15, 20 ou 25
+  maxMB: 10,
+  minTextoFatura: 80
+};
+
+const DISTRIBUIDORAS = ["Cemig","Celesc","CEEE Equatorial","Coelba (Neoenergia)","Cosern (Neoenergia)","CPFL Paulista","CPFL Piratininga","CPFL Santa Cruz","EDP","Elektro (Neoenergia)","Energisa","Equatorial Alagoas","Equatorial Goiás","Equatorial Maranhão","Equatorial Pará","Equatorial Piauí","Light","Neoenergia Brasília","Neoenergia Pernambuco","Copel","RGE","Sulgipe","Cooperativa / outra"];
+
+/* ===================== utilidades ===================== */
+const $ = (s, el=document) => el.querySelector(s);
+const $$ = (s, el=document) => [...el.querySelectorAll(s)];
+const BRL = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0,minimumFractionDigits:0});
+const brl = v => BRL.format(Math.round(v)).replace(/ /g,' ');
+const num = v => new Intl.NumberFormat('pt-BR',{maximumFractionDigits:0}).format(Math.round(v));
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const params = new URLSearchParams(location.search);
+const clean = (s, n=80) => (s||'').replace(/[<>]/g,'').trim().slice(0,n);
+
+const waLink = (txt=CONFIG.mensagemWhatsapp) => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(txt)}`;
+
+/* ===================== personalização via link do e-mail ===================== */
+const P = {
+  empresa: clean(params.get('empresa'), 60),
+  dist: clean(params.get('dist'), 40),
+  lead: clean(params.get('lead'), 30),
+  conta: Number(String(params.get('conta')||'').replace(/\D/g,'')) || 0
+};
+if(P.empresa){
+  $('#pEmp').textContent = P.empresa;
+  $('#persona').hidden = false;
+  CONFIG.mensagemWhatsapp = `Olá! Sou da ${P.empresa} e recebi o contato da Aurig. Quero saber quanto economizo na conta de luz.`;
+}
+
+/* ===================== links e contato ===================== */
+function applyContact(){
+  $$('.js-wa').forEach(a => a.href = waLink());
+  $('#ano').textContent = new Date().getFullYear();
+  if(CONFIG.email){ const m = $('#footMail'); m.hidden = false; m.textContent = CONFIG.email; m.href = 'mailto:' + CONFIG.email; }
+  if(CONFIG.calendlyUrl){ const c = $('#calBtn'); c.hidden = false; c.href = CONFIG.calendlyUrl; }
+  const ctrl = CONFIG.razaoSocial ? CONFIG.razaoSocial + (CONFIG.cnpj ? `, inscrita no CNPJ sob nº ${CONFIG.cnpj}` : '') : 'Aurig Energy';
+  $$('.js-ctrl').forEach(e => e.textContent = ctrl);
+}
+
+/* ===================== cabeçalho, menu, flutuantes ===================== */
+const hdr = $('#hdr'), fab = $('#fab'), mbar = $('#mbar'), bar = $('.progress');
+function onScroll(){
+  const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+  hdr.classList.toggle('solid', y > 30);
+  const past = y > innerHeight * .7;
+  fab.classList.toggle('show', past);
+  mbar.classList.toggle('show', past);
+  bar.style.setProperty('--sp', h > 0 ? y / h : 0);
+  stepsProgress();
+}
+$('#burger').addEventListener('click', e => {
+  const nav = $('#nav'), open = !nav.classList.contains('open');
+  nav.classList.toggle('open', open); e.currentTarget.setAttribute('aria-expanded', open);
+});
+$$('#nav a').forEach(a => a.addEventListener('click', () => { $('#nav').classList.remove('open'); $('#burger').setAttribute('aria-expanded', false); }));
+
+/* ===================== título com revelação por palavra ===================== */
+function splitTitle(){
+  $$('#h1 .ln').forEach(ln => {
+    const target = ln.querySelector('em') || ln;
+    const words = target.textContent.split(' ');
+    target.innerHTML = words.map(w => `<span class="w"><span>${w}</span></span>`).join(' ');
+  });
+  $$('#h1 .w > span').forEach((s,i) => s.style.transitionDelay = (120 + i*90) + 'ms');
+  requestAnimationFrame(() => requestAnimationFrame(() => $('#hero').classList.add('go')));
+}
+
+/* ===================== reveal ===================== */
+function reveal(){
+  const els = $$('[data-r]');
+  if(!('IntersectionObserver' in window) || reduce){ els.forEach(e => e.classList.add('in')); return; }
+  const io = new IntersectionObserver(es => es.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }), {rootMargin:'0px 0px -8% 0px', threshold:.08});
+  els.forEach(e => io.observe(e));
+}
+
+/* =====================================================================
+   CENA ISOMÉTRICA — usina → rede → empresa (SVG gerado aqui)
+   ===================================================================== */
+function buildScene(){
+  const svg = $('#scene'), S = 30, C = Math.cos(Math.PI/6);
+  const P3 = (x,y,z=0) => [(x - y) * C * S, (x + y) * .5 * S - z * S];
+  const pt = p => p.map(n => n.toFixed(1)).join(',');
+  const poly = (pts, fill, ex='') => `<polygon points="${pts.map(pt).join(' ')}" fill="${fill}" ${ex}/>`;
+  const line = (a, b, st, w=1.2, ex='') => `<line x1="${a[0].toFixed(1)}" y1="${a[1].toFixed(1)}" x2="${b[0].toFixed(1)}" y2="${b[1].toFixed(1)}" stroke="${st}" stroke-width="${w}" stroke-linecap="round" ${ex}/>`;
+  const box = (x,y,z,w,d,h,c) => {
+    const right = [P3(x+w,y,z),P3(x+w,y+d,z),P3(x+w,y+d,z+h),P3(x+w,y,z+h)];
+    const left  = [P3(x,y+d,z),P3(x+w,y+d,z),P3(x+w,y+d,z+h),P3(x,y+d,z+h)];
+    const top   = [P3(x,y,z+h),P3(x+w,y,z+h),P3(x+w,y+d,z+h),P3(x,y+d,z+h)];
+    return poly(right,c[2]) + poly(left,c[1]) + poly(top,c[0], c[3] ? `stroke="${c[3]}" stroke-width=".8"` : '');
+  };
+  const pts = [];  // para calcular o viewBox
+  const track = (...ps) => ps.forEach(p => pts.push(p));
+  const IS = ['#3F544C','#2A3934','#22302B','rgba(234,241,234,.16)'];   // ilha
+  const SOIL = ['#22302B','#1A2521','#151E1B'];
+
+  const island = (x,y,w,d) => {
+    let s = '';
+    const c = P3(x+w/2, y+d/2, -1.6);
+    s += `<ellipse class="shadow" cx="${c[0].toFixed(1)}" cy="${(c[1]+3.2*S).toFixed(1)}" rx="${(w*S*.62).toFixed(1)}" ry="${(d*S*.2).toFixed(1)}" fill="#0B1210" opacity=".55" filter="url(#blur)"/>`;
+    s += box(x+.6, y+.6, -1.5, w-1.2, d-1.2, .8, SOIL);
+    s += box(x, y, -.75, w, d, .75, IS);
+    // grade sutil no topo
+    for(let i=1;i<w;i++) s += line(P3(x+i,y,0),P3(x+i,y+d,0),'rgba(234,241,234,.05)',1);
+    for(let j=1;j<d;j++) s += line(P3(x,y+j,0),P3(x+w,y+j,0),'rgba(234,241,234,.05)',1);
+    track(P3(x,y,0),P3(x+w,y,0),P3(x,y+d,0),P3(x+w,y+d,-1.5),P3(x+w/2,y+d/2,-4));
+    return s;
+  };
+  const tree = (x,y,h=1,k=0) => {
+    const base = P3(x,y,0), top = P3(x,y,.55*h), c = P3(x,y,1.05*h);
+    track(P3(x,y,1.8*h));
+    return line(base, top, '#1A2521', 3) +
+      `<circle cx="${c[0].toFixed(1)}" cy="${c[1].toFixed(1)}" r="${(15*h).toFixed(1)}" fill="${k ? '#4F655C':'#465B53'}"/>` +
+      `<circle cx="${(c[0]-4*h).toFixed(1)}" cy="${(c[1]-5*h).toFixed(1)}" r="${(8*h).toFixed(1)}" fill="${k ? '#647A70':'#5A7067'}"/>`;
+  };
+
+  let out = `<defs>
+    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#344A52"/><stop offset="1" stop-color="#1B272B"/></linearGradient>
+    <linearGradient id="sh" x1="0" y1="0" x2="1" y2="1"><stop offset=".3" stop-color="#E0C892" stop-opacity="0"/><stop offset=".55" stop-color="#F3E3B8" stop-opacity=".9"/><stop offset=".8" stop-color="#E0C892" stop-opacity="0"/></linearGradient>
+    <radialGradient id="sun"><stop offset="0" stop-color="#F6E7BE"/><stop offset=".45" stop-color="#E0C892"/><stop offset="1" stop-color="#C5A363"/></radialGradient>
+    <radialGradient id="halo"><stop offset="0" stop-color="#C5A363" stop-opacity=".45"/><stop offset="1" stop-color="#C5A363" stop-opacity="0"/></radialGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0C892" stop-opacity=".22"/><stop offset="1" stop-color="#E0C892" stop-opacity="0"/></linearGradient>
+    <filter id="blur" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>`;
+
+  /* --- sol e feixe --- */
+  const sun = P3(-2, 2.2, 6.2);
+  track([sun[0]-70, sun[1]-70]);
+  out += `<circle cx="${sun[0]}" cy="${sun[1]}" r="90" fill="url(#halo)"/>`;
+  out += `<circle class="ring" cx="${sun[0]}" cy="${sun[1]}" r="40" fill="none" stroke="#E0C892" stroke-width="1.2"/>`;
+  out += `<circle class="ring r2" cx="${sun[0]}" cy="${sun[1]}" r="40" fill="none" stroke="#E0C892" stroke-width="1.2"/>`;
+  out += `<circle cx="${sun[0]}" cy="${sun[1]}" r="30" fill="url(#sun)"/>`;
+  const fc = P3(6.5,5.6,.4), fd = P3(.5,5.6,.4);
+  out += `<polygon points="${pt([sun[0]-18,sun[1]+14])} ${pt([sun[0]+22,sun[1]+16])} ${pt(fc)} ${pt(fd)}" fill="url(#beam)"/>`;
+
+  let scene = '';
+  /* --- ilha A: usina solar --- */
+  scene += island(0,0,7,7);
+  const panels = [];
+  for(let j=0;j<3;j++) for(let i=0;i<4;i++) panels.push([.55 + i*1.55, .45 + j*1.85]);
+  panels.sort((a,b) => (a[0]+a[1]) - (b[0]+b[1]));
+  panels.forEach(([x,y], k) => {
+    const w = 1.28, d = 1.3, zb = 1.0, zf = .38;
+    scene += line(P3(x+.18,y+d-.12,0),P3(x+.18,y+d-.12,zf),'#121A17',1.6);
+    scene += line(P3(x+w-.18,y+d-.12,0),P3(x+w-.18,y+d-.12,zf),'#121A17',1.6);
+    const top = [P3(x,y,zb),P3(x+w,y,zb),P3(x+w,y+d,zf),P3(x,y+d,zf)];
+    scene += poly([P3(x,y+d,zf),P3(x+w,y+d,zf),P3(x+w,y+d,zf-.09),P3(x,y+d,zf-.09)],'#101816');
+    scene += poly(top,'url(#pg)','stroke="#9DB0A6" stroke-opacity=".45" stroke-width=".8"');
+    for(let t=1;t<3;t++){ const yy=y+d*t/3, zz=zb+(zf-zb)*t/3; scene += line(P3(x,yy,zz),P3(x+w,yy,zz),'rgba(157,176,166,.28)',.7); }
+    for(let t=1;t<4;t++){ const xx=x+w*t/4; scene += line(P3(xx,y,zb),P3(xx,y+d,zf),'rgba(157,176,166,.22)',.7); }
+    scene += poly(top,'url(#sh)',`class="glint" style="--i:${k}"`);
+  });
+  scene += box(5.35,5.95,0,.95,.7,.85,['#C5A363','#8C7442','#6E5B33']);   // inversor
+  scene += tree(.9,6.4,1,0) + tree(2.2,6.55,.85,1) + tree(3.6,6.35,.7,0);
+
+  /* --- ilha C: torre da distribuidora --- */
+  scene += island(7.6,1.2,2.2,2.2);
+  const cx=8.7, cy=2.3, hz=4.6, az=3.85;
+  const legs = [[cx-.5,cy-.5],[cx+.5,cy-.5],[cx+.5,cy+.5],[cx-.5,cy+.5]];
+  const tops = [[cx-.14,cy-.14],[cx+.14,cy-.14],[cx+.14,cy+.14],[cx-.14,cy+.14]];
+  const tw = '#C3D1C9';
+  legs.forEach((l,i) => scene += line(P3(l[0],l[1],0),P3(tops[i][0],tops[i][1],az),tw,1.4));
+  [1.1,2.2,3.1].forEach(z => {
+    const f = 1 - z/az*.72;
+    const q = legs.map(l => [cx+(l[0]-cx)*f, cy+(l[1]-cy)*f]);
+    scene += line(P3(q[1][0],q[1][1],z),P3(q[2][0],q[2][1],z),tw,1) + line(P3(q[3][0],q[3][1],z),P3(q[2][0],q[2][1],z),tw,1);
+  });
+  scene += line(P3(legs[3][0],legs[3][1],0),P3(cx+.3,cy+.3*1,2.2),tw,.8) + line(P3(legs[2][0],legs[2][1],0),P3(cx-.2,cy+.36,2.2),tw,.8);
+  scene += line(P3(cx,cy,az),P3(cx,cy,hz),tw,1.4);
+  const armA = [cx-.95, cy+.95], armB = [cx+.95, cy-.95];
+  scene += line(P3(armA[0],armA[1],az),P3(armB[0],armB[1],az),tw,1.8);
+  scene += line(P3(armA[0],armA[1],az),P3(armA[0],armA[1],az-.32),'#E0C892',2) + line(P3(armB[0],armB[1],az),P3(armB[0],armB[1],az-.32),'#E0C892',2);
+  track(P3(cx,cy,hz+.6));
+
+  /* --- ilha B: empresa --- */
+  scene += island(11,-3,7.4,6.2);
+  const bx=12.1, by=-1.9, bw=3.6, bd=3.3, bh=3.7;
+  scene += box(bx,by,0,bw,bd,bh,['#5A7067','#33443E','#283631']);
+  // janelas fachada frontal-esquerda (plano y = by+bd)
+  let wi = 0;
+  for(let z=.55; z<bh-.45; z+=.62) for(let x=bx+.3; x<bx+bw-.35; x+=.62){
+    const lit = ((Math.round(x*7)+Math.round(z*5)) % 3 === 0);
+    const q=[P3(x,by+bd,z),P3(x+.34,by+bd,z),P3(x+.34,by+bd,z+.36),P3(x,by+bd,z+.36)];
+    scene += poly(q, lit ? '#E0C892' : '#1C2724', lit ? `class="lit" style="--i:${wi++}"` : '');
+  }
+  // janelas fachada direita (plano x = bx+bw)
+  for(let z=.55; z<bh-.45; z+=.62) for(let y=by+.3; y<by+bd-.35; y+=.62){
+    const lit = ((Math.round(y*5)+Math.round(z*7)) % 4 === 0);
+    const q=[P3(bx+bw,y,z),P3(bx+bw,y+.34,z),P3(bx+bw,y+.34,z+.36),P3(bx+bw,y,z+.36)];
+    scene += poly(q, lit ? '#D9BE80' : '#18221F', lit ? `class="lit" style="--i:${wi++}"` : '');
+  }
+  scene += poly([P3(bx,by+bd,bh-.32),P3(bx+bw,by+bd,bh-.32),P3(bx+bw,by+bd,bh-.18),P3(bx,by+bd,bh-.18)],'#C5A363');
+  scene += poly([P3(bx+bw,by,bh-.32),P3(bx+bw,by+bd,bh-.32),P3(bx+bw,by+bd,bh-.18),P3(bx+bw,by,bh-.18)],'#9C824C');
+  scene += box(bx+.5,by+.4,bh,.75,.7,.38,['#7E9188','#4A5F57','#3A4D46']);
+  scene += box(bx+1.9,by+1.5,bh,.95,.6,.3,['#7E9188','#4A5F57','#3A4D46']);
+  // anexo
+  scene += box(16,-1,0,1.7,2.4,1.85,['#4F655C','#2F3E39','#26332F']);
+  scene += poly([P3(16.25,1.4,0),P3(17.0,1.4,0),P3(17.0,1.4,1.2),P3(16.25,1.4,1.2)],'#18221F');
+  // medidor (destino da energia)
+  scene += box(13.05,by+bd,0.95,.42,.12,.5,['#E0C892','#C5A363','#8C7442']);
+  scene += tree(11.7,2.4,.9,1) + tree(15.3,2.55,.8,0) + tree(17.8,2.6,.95,1);
+  track(P3(bx,by,bh+1.2), P3(18.4,-3,0), P3(18.4,3.2,-1.5));
+
+  /* --- cabo e fluxo de energia --- */
+  const a = P3(5.85,6.3,.85), b = P3(armA[0],armA[1],az-.32), c = P3(armB[0],armB[1],az-.32), d = P3(13.26,by+bd+.12,1.2);
+  const mid = (p,q,sag) => [(p[0]+q[0])/2, (p[1]+q[1])/2 + sag];
+  const m1 = mid(a,b,26), m2 = mid(c,d,30);
+  const path = `M${pt(a)} Q${pt(m1)} ${pt(b)} L${pt(c)} Q${pt(m2)} ${pt(d)}`;
+  let flow = `<path d="${path}" fill="none" stroke="#9DB0A6" stroke-opacity=".55" stroke-width="1.4"/>`;
+  flow += `<path id="fp" class="flow" d="${path}" fill="none" stroke="#E0C892" stroke-width="2.6" stroke-linecap="round" filter="url(#glow)"/>`;
+  if(!reduce) for(let k=0;k<4;k++) flow += `<circle r="4" fill="#F6E7BE" filter="url(#glow)"><animateMotion dur="3.4s" begin="${(k*.85).toFixed(2)}s" repeatCount="indefinite"><mpath href="#fp" xlink:href="#fp"/></animateMotion></circle>`;
+
+  /* --- rótulos --- */
+  const label = (p, n, txt, anchor='middle') => {
+    const [x,y] = p;
+    return `<g class="lbl-g"><circle cx="${x}" cy="${y}" r="10" fill="#C5A363"/><text class="lbl-n" x="${x}" y="${y+4}" text-anchor="middle">${n}</text>` +
+      `<text class="lbl" x="${anchor==='start' ? x+18 : x}" y="${anchor==='start' ? y+5 : y-20}" text-anchor="${anchor}">${txt}</text></g>`;
+  };
+  const L1 = P3(1.2,3.2,3.3), L2 = P3(cx,cy,hz+1.15), L3 = P3(14.4,-3.4,4.9);
+  track([L1[0]-110,L1[1]-30],[L3[0]+120,L3[1]-30]);
+  let labels = label(L1,'1','Usina solar parceira') + label(L2,'2','Rede da distribuidora') + label(L3,'3','Sua empresa');
+
+  /* --- viewBox --- */
+  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  const pad = 16, minX = Math.min(...xs)-pad, minY = Math.min(...ys)-pad, W = Math.max(...xs)-minX+pad, H = Math.max(...ys)-minY+pad*2;
+  svg.setAttribute('viewBox', `${minX.toFixed(0)} ${minY.toFixed(0)} ${W.toFixed(0)} ${H.toFixed(0)}`);
+  svg.innerHTML = out + `<g class="bob">${scene}${flow}</g>${labels}`;
+
+  /* parallax leve no desktop */
+  if(!reduce && matchMedia('(pointer:fine)').matches){
+    const g = svg.querySelector('.bob'); let raf;
+    $('#hero').addEventListener('pointermove', e => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const dx = (e.clientX / innerWidth - .5), dy = (e.clientY / innerHeight - .5);
+        svg.style.transform = `perspective(1200px) rotateY(${dx*5}deg) rotateX(${-dy*4}deg)`;
+      });
+    });
+    svg.style.transition = 'transform .6s cubic-bezier(.2,.7,.2,1)';
+  }
+}
+
+/* =====================================================================
+   SIMULADOR
+   ===================================================================== */
+const SIM = { conta: P.conta || CONFIG.contaPadrao, pct: CONFIG.descontoPadrao };
+const vIn = $('#valor'), rIn = $('#faixa');
+const toRange = v => Math.round(1000 * Math.log(v/CONFIG.contaMin) / Math.log(CONFIG.contaMax/CONFIG.contaMin));
+const fromRange = r => { const v = CONFIG.contaMin * Math.pow(CONFIG.contaMax/CONFIG.contaMin, r/1000); return v < 20000 ? Math.round(v/100)*100 : Math.round(v/500)*500; };
+const anim = {};
+function tween(el, to, fmt){
+  const id = el.id, from = anim[id] ?? to; anim[id] = to;
+  if(reduce || from === to){ el.textContent = fmt(to); return; }
+  const t0 = performance.now(), dur = 550;
+  (function step(t){ const k = Math.min(1,(t-t0)/dur), e = 1-Math.pow(1-k,3); el.textContent = fmt(from + (to-from)*e); if(k<1) requestAnimationFrame(step); })(t0);
+}
+function renderSim(fromSlider){
+  const c = Math.max(0, SIM.conta), p = SIM.pct/100, eco = c*p;
+  if(!fromSlider) rIn.value = toRange(Math.min(Math.max(c,CONFIG.contaMin),CONFIG.contaMax));
+  rIn.style.setProperty('--fill', (rIn.value/10) + '%');
+  if(document.activeElement !== vIn) vIn.value = num(c);
+  tween($('#rMes'), eco, brl); tween($('#rAno'), eco*12, brl); tween($('#r5'), eco*60, brl);
+  const n = 12*p, nTxt = Number.isInteger(n) ? String(n) : n.toFixed(1).replace('.',',');
+  $('#equiv').innerHTML = `É como receber <b>${nTxt} ${n===1?'conta':'contas'} de luz de graça</b> por ano.`;
+  $('#rcHoje').textContent = brl(c); $('#rcCom').textContent = brl(c-eco); $('#rcEco').textContent = '− ' + brl(eco);
+  tween($('#rcAno'), eco*12, brl);
+  $('#rcKeep').style.flexBasis = (100-SIM.pct)+'%'; $('#rcCut').style.flexBasis = SIM.pct+'%';
+  $('#stPct').textContent = '−' + SIM.pct + '%';
+  // cartão do hero acompanha
+  $('#bcOld').textContent = brl(c); $('#bcNew').textContent = brl(c-eco); $('#bcPct').textContent = '−' + SIM.pct + '%';
+  $('#bcBar').style.setProperty('--cut', SIM.pct+'%');
+}
+function initSim(){
+  if(P.dist) $('#rcDist').textContent = P.dist;
+  else if(P.empresa) $('#rcDist').textContent = P.empresa;
+  rIn.addEventListener('input', () => { SIM.conta = fromRange(+rIn.value); renderSim(true); });
+  vIn.addEventListener('input', () => {
+    const raw = vIn.value.replace(/\D/g,'').slice(0,7);
+    SIM.conta = Number(raw) || 0;
+    vIn.value = raw ? num(SIM.conta) : '';
+    renderSim();
+  });
+  vIn.addEventListener('blur', () => { if(!SIM.conta){ SIM.conta = CONFIG.contaPadrao; } renderSim(); });
+  $$('.chip').forEach(ch => {
+    ch.setAttribute('aria-pressed', String(+ch.dataset.pct === SIM.pct));
+    ch.addEventListener('click', () => {
+      SIM.pct = +ch.dataset.pct;
+      $$('.chip').forEach(o => o.setAttribute('aria-pressed', String(o === ch)));
+      const st = $('#stamp'); st.classList.remove('pop'); void st.offsetWidth; st.classList.add('pop');
+      renderSim();
+    });
+  });
+  renderSim();
+}
+
+/* ===================== passos: linha de progresso ===================== */
+const stepsEl = $('#steps'), stepItems = $$('.step');
+function stepsProgress(){
+  if(!stepsEl) return;
+  const r = stepsEl.getBoundingClientRect(), mark = innerHeight * .55;
+  const p = Math.min(1, Math.max(0, (mark - r.top) / r.height));
+  stepsEl.style.setProperty('--p', p.toFixed(3));
+  stepItems.forEach(s => s.classList.toggle('on', s.getBoundingClientRect().top < mark));
+}
+
+/* =====================================================================
+   FORMULÁRIO — validação do PDF + envio ao Make (ou WhatsApp)
+   ===================================================================== */
+let pdfOk = false, pdfFile = null, pdfjsReady = null;
+function loadPdfjs(){
+  if(pdfjsReady) return pdfjsReady;
+  pdfjsReady = new Promise((res) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+    s.onload = () => { window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; res(true); };
+    s.onerror = () => res(false);
+    document.head.appendChild(s);
+  });
+  return pdfjsReady;
+}
+function fstat(kind, t, m){
+  const b = $('#fstat'); b.className = 'fstat show ' + kind;
+  $('#fIco').innerHTML = kind === 'chk' ? '<span class="spin"></span>' : '';
+  $('#fT').textContent = t; $('#fM').textContent = m;
+}
+async function checkPdf(file){
+  pdfOk = false; pdfFile = null;
+  if(!(file.type === 'application/pdf' || /\.pdf$/i.test(file.name))) return fstat('err','Formato inválido','Envie o arquivo em PDF. Fotos e prints não servem para o diagnóstico.');
+  if(file.size > CONFIG.maxMB*1024*1024) return fstat('err','Arquivo muito grande',`O limite é ${CONFIG.maxMB} MB. Envie o PDF original da distribuidora.`);
+  fstat('chk','Verificando a conta…','Conferindo se é o PDF original da distribuidora.');
+  try{
+    const buf = await file.arrayBuffer();
+    const head = String.fromCharCode(...new Uint8Array(buf.slice(0,5)));
+    if(!head.startsWith('%PDF')) return fstat('err','Não parece um PDF','Baixe a conta novamente no site ou aplicativo da distribuidora.');
+    const ok = await loadPdfjs();
+    if(!ok){ pdfOk = true; pdfFile = file; return fstat('ok','PDF recebido', file.name); }
+    const pdf = await pdfjsLib.getDocument({data: buf}).promise;
+    let txt = '';
+    for(let i=1;i<=Math.min(pdf.numPages,4);i++){ const pg = await pdf.getPage(i); const ct = await pg.getTextContent(); txt += ct.items.map(it => it.str).join(' ') + ' '; }
+    const t = txt.replace(/\s+/g,' ').trim().toLowerCase();
+    if(t.length < CONFIG.minTextoFatura) return fstat('err','Isso parece uma foto ou digitalização','O PDF não tem texto selecionável. Baixe a conta original (em PDF) no site ou aplicativo da distribuidora.');
+    const termos = ['kwh','energia','fatura','consumo','distribuidora','vencimento','valor a pagar','tarifa','instalação','medidor','tributos','icms'];
+    const hits = termos.filter(k => t.includes(k)).length;
+    pdfOk = true; pdfFile = file;
+    fstat('ok', hits >= 2 ? 'Conta validada' : 'PDF aceito', hits >= 2 ? `${file.name} — PDF original reconhecido.` : `${file.name} — confira se é a conta mais recente.`);
+  }catch(err){ console.error(err); fstat('err','Não foi possível ler o arquivo','Baixe a conta novamente no site da distribuidora e tente de novo.'); }
+}
+function msg(kind, html){ const m = $('#msg'); m.className = 'msg show ' + kind; m.innerHTML = html; }
+function maskTel(v){
+  const d = v.replace(/\D/g,'').slice(0,11);
+  if(d.length <= 2) return d ? `(${d}` : '';
+  if(d.length <= 6) return `(${d.slice(0,2)}) ${d.slice(2)}`;
+  if(d.length <= 10) return `(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`;
+  return `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`;
+}
+function initForm(){
+  const sel = $('#dist');
+  DISTRIBUIDORAS.forEach(n => { const o = document.createElement('option'); o.textContent = n; sel.appendChild(o); });
+  if(P.dist){
+    const key = P.dist.toLowerCase().split(' ')[0];
+    const hit = DISTRIBUIDORAS.find(n => n.toLowerCase().includes(P.dist.toLowerCase())) || DISTRIBUIDORAS.find(n => n.toLowerCase().includes(key));
+    if(hit) sel.value = hit;
+  }
+  if(P.empresa) $('#empresa').value = P.empresa;
+  $('#tel').addEventListener('input', e => e.target.value = maskTel(e.target.value));
+
+  const input = $('#pdf'), drop = $('#drop');
+  input.addEventListener('change', e => e.target.files[0] && checkPdf(e.target.files[0]));
+  ['dragenter','dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('over'); }));
+  ['dragleave','drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('over'); }));
+  drop.addEventListener('drop', e => { const f = e.dataTransfer.files[0]; if(f){ try{ input.files = e.dataTransfer.files; }catch(_){} checkPdf(f); } });
+
+  $('#lead').addEventListener('submit', async e => {
+    e.preventDefault();
+    const f = e.currentTarget;
+    $('#msg').className = 'msg';
+    for(const id of ['nome','empresa','tel','cidade']){
+      const el = $('#'+id); const bad = !el.value.trim() || (id === 'tel' && el.value.replace(/\D/g,'').length < 10);
+      el.setAttribute('aria-invalid', bad);
+      if(bad){ el.focus(); return msg('err', id === 'tel' ? 'Informe um WhatsApp com DDD.' : 'Preencha os campos obrigatórios.'); }
+    }
+    const em = $('#email');
+    if(em.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value)){ em.setAttribute('aria-invalid', true); em.focus(); return msg('err','Confira o e-mail informado.'); }
+    if(!$('#ok').checked) return msg('err','Para continuar, marque a autorização de tratamento de dados (LGPD).');
+    if(input.files[0] && !pdfOk) return msg('err','A conta anexada não passou na verificação. Remova o arquivo ou envie o PDF original.');
+    if($('#site').value) return done($('#nome').value);   // robô
+
+    const d = {
+      nome: $('#nome').value.trim(), empresa: $('#empresa').value.trim(), whatsapp: $('#tel').value.trim(),
+      email: em.value.trim(), cidade: $('#cidade').value.trim(), distribuidora: sel.value,
+      conta_simulada: SIM.conta, desconto_simulado: SIM.pct, economia_mes_simulada: Math.round(SIM.conta*SIM.pct/100),
+      lead_id: P.lead, origem: P.lead ? 'email-prospeccao' : 'site', pagina: location.href.split('#')[0],
+      utm_source: params.get('utm_source') || '', utm_campaign: params.get('utm_campaign') || '',
+      data_envio: new Date().toISOString()
+    };
+    const btn = $('#send'); btn.disabled = true; btn.firstChild.textContent = 'Enviando… ';
+
+    const viaWhats = (motivo) => {
+      const txt = `Olá! Quero meu diagnóstico Aurig.\n\nNome: ${d.nome}\nEmpresa: ${d.empresa}\nCidade/UF: ${d.cidade}\nDistribuidora: ${d.distribuidora || '—'}\nConta média: ${brl(d.conta_simulada)}\n${d.email ? 'E-mail: ' + d.email + '\n' : ''}${d.lead_id ? 'Código: ' + d.lead_id + '\n' : ''}\nVou enviar a conta em PDF por aqui.`;
+      const url = waLink(txt);
+      window.open(url, '_blank', 'noopener');
+      msg('info', `${motivo ? motivo + ' ' : ''}Abrimos o WhatsApp com seus dados — é só enviar a mensagem${pdfFile ? ' e anexar o PDF da conta' : ''}. Se não abriu, <a href="${url}" target="_blank" rel="noopener">clique aqui</a>.`);
+    };
+
+    try{
+      if(!CONFIG.webhookUrl){ viaWhats(''); return; }
+      const fd = new FormData();
+      Object.entries(d).forEach(([k,v]) => fd.append(k, v));
+      if(pdfFile) fd.append('fatura', pdfFile, pdfFile.name);
+      const r = await fetch(CONFIG.webhookUrl, {method:'POST', body: fd});
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      done(d.nome);
+    }catch(err){
+      console.error(err);
+      viaWhats('Não conseguimos enviar pelo site agora.');
+    }finally{
+      btn.disabled = false; btn.firstChild.textContent = 'Enviar e receber meu diagnóstico ';
+    }
+  });
+}
+function done(nome){
+  const first = (nome||'').trim().split(' ')[0];
+  $('#formBox').innerHTML = `<div class="done" role="status"><svg class="mark" aria-hidden="true"><use href="#mk"/></svg><h3>Recebido${first ? ', ' + first.replace(/[<>]/g,'') : ''}.</h3><p>Seu diagnóstico chega em até 48h. Se quiser adiantar, fale com a gente agora.</p><a class="btn btn-ink" href="${waLink()}" target="_blank" rel="noopener">Falar no WhatsApp</a></div>`;
+}
+
+/* ===================== boot ===================== */
+applyContact();
+splitTitle();
+buildScene();
+initSim();
+initForm();
+reveal();
+addEventListener('scroll', onScroll, {passive:true});
+addEventListener('resize', onScroll);
+onScroll();
+</script>
+</body>
+</html>
